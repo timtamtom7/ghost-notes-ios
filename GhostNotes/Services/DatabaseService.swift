@@ -15,11 +15,11 @@ final class DatabaseService: @unchecked Sendable {
 
     private init() {
         // R5: On init, import any new articles from share extension App Group
-        Task { await importSharedArticles() }
+        importSharedArticles()
     }
 
     // MARK: - R5: Share Extension Sync
-    private func importSharedArticles() async {
+    private func importSharedArticles() {
         guard let sharedDefaults = UserDefaults(suiteName: "group.com.tomalabs.ghostnotes"),
               let data = sharedDefaults.data(forKey: sharedArticlesKey),
               let sharedArticles = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {

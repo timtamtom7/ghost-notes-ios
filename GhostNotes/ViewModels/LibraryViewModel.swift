@@ -149,10 +149,10 @@ class LibraryViewModel {
         isLoading = true
         errorMessage = nil
         do {
-            articles = try await DatabaseService.shared.fetchAllArticles()
-            archivedArticles = try await DatabaseService.shared.fetchArchivedArticles()
-            collections = try await DatabaseService.shared.fetchAllCollections()
-            stats = try await DatabaseService.shared.fetchStats()
+            articles = try DatabaseService.shared.fetchAllArticles()
+            archivedArticles = try DatabaseService.shared.fetchArchivedArticles()
+            collections = try DatabaseService.shared.fetchAllCollections()
+            stats = try DatabaseService.shared.fetchStats()
         } catch {
             errorMessage = "Failed to load articles. Pull to refresh."
         }
@@ -163,12 +163,21 @@ class LibraryViewModel {
         guard !url.isEmpty else { return }
         isLoading = true
         errorMessage = nil
-        
+
+        // R6: URL deduplication — prevent saving the same article twice
+        let normalizedURL = url.lowercased().trimmingCharacters(in: .whitespacesAndNewlines)
+        if articles.contains(where: { $0.url.lowercased() == normalizedURL }) {
+            errorMessage = "This article is already in your library."
+            playHaptic(.error)
+            isLoading = false
+            return
+        }
+
         do {
             let article = await ArticleService.shared.processURL(url)
-            try await DatabaseService.shared.insertArticle(article)
+            try DatabaseService.shared.insertArticle(article)
             articles.insert(article, at: 0)
-            stats = try await DatabaseService.shared.fetchStats()
+            stats = try DatabaseService.shared.fetchStats()
             playHaptic(.success)
         } catch {
             errorMessage = "Failed to save article. Check the URL and try again."
@@ -176,91 +185,91 @@ class LibraryViewModel {
         }
         isLoading = false
     }
-    
+
     func deleteArticle(_ article: Article) async {
         do {
-            try await DatabaseService.shared.deleteArticle(article)
+            try DatabaseService.shared.deleteArticle(article)
             articles.removeAll { $0.id == article.id }
             archivedArticles.removeAll { $0.id == article.id }
-            stats = try await DatabaseService.shared.fetchStats()
+            stats = try DatabaseService.shared.fetchStats()
             playHaptic(.medium)
         } catch {
             errorMessage = "Failed to delete article."
             playHaptic(.error)
         }
     }
-    
+
     func archiveArticle(_ article: Article) async {
         var updated = article
         updated.isArchived = true
         updated.readAt = Date()
         do {
-            try await DatabaseService.shared.updateArticle(updated)
+            try DatabaseService.shared.updateArticle(updated)
             articles.removeAll { $0.id == article.id }
             archivedArticles.insert(updated, at: 0)
-            stats = try await DatabaseService.shared.fetchStats()
+            stats = try DatabaseService.shared.fetchStats()
             playHaptic(.success)
         } catch {
             errorMessage = "Failed to archive article."
             playHaptic(.error)
         }
     }
-    
+
     func markAsRead(_ article: Article) async {
         var updated = article
         updated.isRead = true
         updated.readAt = Date()
         do {
-            try await DatabaseService.shared.updateArticle(updated)
+            try DatabaseService.shared.updateArticle(updated)
             if let index = articles.firstIndex(where: { $0.id == article.id }) {
                 articles[index] = updated
             }
-            stats = try await DatabaseService.shared.fetchStats()
+            stats = try DatabaseService.shared.fetchStats()
             playHaptic(.light)
         } catch {
             errorMessage = "Failed to mark as read."
             playHaptic(.error)
         }
     }
-    
+
     func markAsUnread(_ article: Article) async {
         var updated = article
         updated.isRead = false
         do {
-            try await DatabaseService.shared.updateArticle(updated)
+            try DatabaseService.shared.updateArticle(updated)
             if let index = articles.firstIndex(where: { $0.id == article.id }) {
                 articles[index] = updated
             } else if let index = archivedArticles.firstIndex(where: { $0.id == article.id }) {
                 archivedArticles[index] = updated
             }
-            stats = try await DatabaseService.shared.fetchStats()
+            stats = try DatabaseService.shared.fetchStats()
             playHaptic(.light)
         } catch {
             errorMessage = "Failed to mark as unread."
             playHaptic(.error)
         }
     }
-    
+
     func unarchiveArticle(_ article: Article) async {
         var updated = article
         updated.isArchived = false
         do {
-            try await DatabaseService.shared.updateArticle(updated)
+            try DatabaseService.shared.updateArticle(updated)
             archivedArticles.removeAll { $0.id == article.id }
             articles.insert(updated, at: 0)
-            stats = try await DatabaseService.shared.fetchStats()
+            stats = try DatabaseService.shared.fetchStats()
             playHaptic(.success)
         } catch {
             errorMessage = "Failed to restore article."
             playHaptic(.error)
         }
     }
-    
+
     func addCollection(name: String) async {
         guard !name.isEmpty else { return }
         let collection = Collection(name: name)
         do {
-            try await DatabaseService.shared.insertCollection(collection)
+            try DatabaseService.shared.insertCollection(collection)
             collections.append(collection)
             playHaptic(.success)
         } catch {
@@ -268,10 +277,10 @@ class LibraryViewModel {
             playHaptic(.error)
         }
     }
-    
+
     func deleteCollection(_ collection: Collection) async {
         do {
-            try await DatabaseService.shared.deleteCollection(collection)
+            try DatabaseService.shared.deleteCollection(collection)
             collections.removeAll { $0.id == collection.id }
             playHaptic(.medium)
         } catch {
@@ -279,7 +288,7 @@ class LibraryViewModel {
             playHaptic(.error)
         }
     }
-    
+
     func search() async {
         guard !searchQuery.isEmpty else {
             await load()
@@ -287,7 +296,7 @@ class LibraryViewModel {
         }
         isLoading = true
         do {
-            articles = try await DatabaseService.shared.searchArticles(query: searchQuery)
+            articles = try DatabaseService.shared.searchArticles(query: searchQuery)
         } catch {
             errorMessage = "Search failed."
         }

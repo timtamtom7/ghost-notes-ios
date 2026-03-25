@@ -55,13 +55,13 @@ class ReadingViewModel {
         updated.readAt = Date()
         updated.readingProgress = 1.0
         do {
-            try await DatabaseService.shared.updateArticle(updated)
+            try DatabaseService.shared.updateArticle(updated)
             article = updated
         } catch {
             print("Failed to mark as read: \(error)")
         }
     }
-    
+
     func updateProgress(_ progress: Double) async {
         var updated = article
         updated.readingProgress = progress
@@ -70,7 +70,7 @@ class ReadingViewModel {
             updated.readAt = Date()
         }
         do {
-            try await DatabaseService.shared.updateArticle(updated)
+            try DatabaseService.shared.updateArticle(updated)
             article = updated
         } catch {
             print("Failed to update progress: \(error)")
