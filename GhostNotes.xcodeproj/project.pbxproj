@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		011D7DD09592F5DCF8B9736C /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202AE2DAB9F7A50F55292DE /* ArticleService.swift */; };
+		0AD1FE9CDF876B1469F100C9 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE0FCD6B716A7F38BA74E5C /* ShareViewController.swift */; };
 		0F87034F61CB25B7661B3DFC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2235BC6523900570FCE2 /* ContentView.swift */; };
 		30461BDF85E692819A62FB33 /* GhostNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D272CF9599CB59F506932A /* GhostNotesApp.swift */; };
 		30F8FD7688FFA7568BFC1BA3 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C6B5D42F3564378B7A4B59 /* LibraryViewModel.swift */; };
@@ -22,6 +23,7 @@
 		C3EDBCCD8ABBCB4734444A1A /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE258B75F967B3B066EB0 /* StatsView.swift */; };
 		D40021829950387B55C43B59 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B67E0488A4168F83E890D0 /* DatabaseService.swift */; };
 		D40622D57248B9D6753A89A7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B635319616959E36FB9086C /* Article.swift */; };
+		EA502DDE994267B9A342630E /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D713F54752068692C04DF525 /* ShareService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,17 +32,21 @@
 		21D272CF9599CB59F506932A /* GhostNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesApp.swift; sourceTree = "<group>"; };
 		3ABBE258B75F967B3B066EB0 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		3BB96FD3F12CC05D4F64C302 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4B88D5BB73A7111EA6CA56B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4CDAE07F8EC79F731317E919 /* GhostNotes.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = GhostNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7202AE2DAB9F7A50F55292DE /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		78B67E0488A4168F83E890D0 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		8F247C692340C42CD8346D79 /* ArticleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCard.swift; sourceTree = "<group>"; };
 		9B635319616959E36FB9086C /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		AAE0FCD6B716A7F38BA74E5C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		B0C6B5D42F3564378B7A4B59 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		CBFAECAFFAAE5F5A8F92131C /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
 		CE2D7EC36EEDE0F6C7F32B5F /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
 		CFE346ED13A57FE3247699FE /* ReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingView.swift; sourceTree = "<group>"; };
 		D05633B1F276C97EA9E83E67 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		D5C046D2CBC67DCE78B18D84 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
+		D713F54752068692C04DF525 /* ShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
+		FA0253B8AA0F40E356938779 /* GhostNotesShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = GhostNotesShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXGroup section */
@@ -49,6 +55,7 @@
 			children = (
 				7202AE2DAB9F7A50F55292DE /* ArticleService.swift */,
 				78B67E0488A4168F83E890D0 /* DatabaseService.swift */,
+				D713F54752068692C04DF525 /* ShareService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -65,6 +72,7 @@
 			isa = PBXGroup;
 			children = (
 				FFE2F98FD87CB85A5403926A /* GhostNotes */,
+				FB585831BC6201A1CF69F28F /* GhostNotesShareExtension */,
 				FB56A96EAD881C626154F126 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -103,8 +111,18 @@
 			isa = PBXGroup;
 			children = (
 				4CDAE07F8EC79F731317E919 /* GhostNotes.app */,
+				FA0253B8AA0F40E356938779 /* GhostNotesShareExtension.appex */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FB585831BC6201A1CF69F28F /* GhostNotesShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				4B88D5BB73A7111EA6CA56B5 /* Info.plist */,
+				AAE0FCD6B716A7F38BA74E5C /* ShareViewController.swift */,
+			);
+			path = GhostNotesShareExtension;
 			sourceTree = "<group>";
 		};
 		FE2A0BD1C9DE1159C95BBCF1 /* ViewModels */ = {
@@ -149,6 +167,21 @@
 			productReference = 4CDAE07F8EC79F731317E919 /* GhostNotes.app */;
 			productType = "com.apple.product-type.application";
 		};
+		C9328554807BA85861A1CB4C /* GhostNotesShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6EBC68A8ED2781439E3F7B02 /* Build configuration list for PBXNativeTarget "GhostNotesShareExtension" */;
+			buildPhases = (
+				05C94B4933363E7C162A395F /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GhostNotesShareExtension;
+			productName = GhostNotesShareExtension;
+			productReference = FA0253B8AA0F40E356938779 /* GhostNotesShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -159,6 +192,10 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					71AFDE0C796EBA9293F28855 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					C9328554807BA85861A1CB4C = {
 						DevelopmentTeam = "";
 						ProvisioningStyle = Automatic;
 					};
@@ -177,6 +214,7 @@
 			projectRoot = "";
 			targets = (
 				71AFDE0C796EBA9293F28855 /* GhostNotes */,
+				C9328554807BA85861A1CB4C /* GhostNotesShareExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -194,6 +232,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		05C94B4933363E7C162A395F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0AD1FE9CDF876B1469F100C9 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EAA4CCCB23D0541C162BC1E6 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -210,6 +256,7 @@
 				30F8FD7688FFA7568BFC1BA3 /* LibraryViewModel.swift in Sources */,
 				50995D52012AB9F7DB01548E /* ReadingView.swift in Sources */,
 				939B71C505B1B064D111F48D /* ReadingViewModel.swift in Sources */,
+				EA502DDE994267B9A342630E /* ShareService.swift in Sources */,
 				C3EDBCCD8ABBCB4734444A1A /* StatsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -217,6 +264,26 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		3BB0F2A97440916A497A31A9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = GhostNotesShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomalabs.ghostnotes.share;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		659CC92A26B278BB8FA24521 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -238,6 +305,26 @@
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
+		};
+		7199159A682FB6397A449EBC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = GhostNotesShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomalabs.ghostnotes.share;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
 		};
 		783FFFEEAC2D08F90F955DE5 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -393,6 +480,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		6EBC68A8ED2781439E3F7B02 /* Build configuration list for PBXNativeTarget "GhostNotesShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3BB0F2A97440916A497A31A9 /* Debug */,
+				7199159A682FB6397A449EBC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
 		CF2087EF0949222D16E5265F /* Build configuration list for PBXNativeTarget "GhostNotes" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

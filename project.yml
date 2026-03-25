@@ -33,3 +33,19 @@ targets:
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: ""
         GENERATE_INFOPLIST_FILE: YES
+
+  GhostNotesShareExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: GhostNotesShareExtension
+        type: group
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tomalabs.ghostnotes.share
+        INFOPLIST_FILE: GhostNotesShareExtension/Info.plist
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        SKIP_INSTALL: YES
