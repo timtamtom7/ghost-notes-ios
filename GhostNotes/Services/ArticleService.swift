@@ -182,6 +182,7 @@ final class ArticleService: @unchecked Sendable {
             title: title,
             domain: domain,
             articleDescription: summary,
+            bodyContent: bodyText,  // R5: Saved for offline reading
             readingTimeMinutes: readingTime
         )
     }

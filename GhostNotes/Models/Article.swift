@@ -6,6 +6,7 @@ struct Article: Identifiable, Codable, Equatable {
     var title: String
     var domain: String
     var articleDescription: String
+    var bodyContent: String  // R5: Offline reading — full article text saved locally
     var readingTimeMinutes: Int
     var isRead: Bool
     var isArchived: Bool
@@ -13,13 +14,14 @@ struct Article: Identifiable, Codable, Equatable {
     var savedAt: Date
     var readAt: Date?
     var readingProgress: Double
-    
+
     init(
         id: UUID = UUID(),
         url: String,
         title: String,
         domain: String = "",
         articleDescription: String = "",
+        bodyContent: String = "",
         readingTimeMinutes: Int = 0,
         isRead: Bool = false,
         isArchived: Bool = false,
@@ -33,6 +35,7 @@ struct Article: Identifiable, Codable, Equatable {
         self.title = title
         self.domain = domain
         self.articleDescription = articleDescription
+        self.bodyContent = bodyContent
         self.readingTimeMinutes = readingTimeMinutes
         self.isRead = isRead
         self.isArchived = isArchived

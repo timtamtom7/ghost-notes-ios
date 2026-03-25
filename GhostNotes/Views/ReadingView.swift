@@ -102,29 +102,13 @@ struct ReadingView: View {
     }
     
     private var readingParagraphs: [String] {
-        let body = """
-        This article would contain the full text content fetched from the original URL.
-        In a real implementation, this would be parsed using a content extraction
-        service like Mercury Parser or Apple's NaturalLanguage framework to extract
-        the main body text from the web page.
-        
-        The reading experience should feel like a premium ebook reader — no ads,
-        no distractions, no clutter. Just you and the words.
-        
-        Long-form reading on mobile deserves respect. The typography should be
-        comfortable for extended reading sessions. The background should be easy
-        on the eyes. The progress indicator should motivate completion without
-        creating anxiety.
-        
-        Articles saved to Ghost Notes are commitments. The app respects the
-        reader's time and attention. Every design decision serves the reading
-        experience above all else.
-        
-        This is what distinguishes a reading app from a bookmark manager.
-        It's not just about saving links — it's about creating a space where
-        deep reading can happen.
-        """
-        return body.components(separatedBy: "\n\n").filter { !$0.isEmpty }
+        // R5: Display actual saved article body, fallback to description if unavailable
+        let content = viewModel.article.bodyContent.isEmpty
+            ? (viewModel.article.articleDescription.isEmpty
+                ? "Article content could not be loaded. Please check your internet connection and try again."
+                : viewModel.article.articleDescription)
+            : viewModel.article.bodyContent
+        return content.components(separatedBy: "\n\n").filter { !$0.isEmpty }
     }
 }
 

@@ -71,6 +71,19 @@ Ghost Notes is a focused read-it-later app for iOS. Save articles, read them dis
 - Offline reading mode
 - Light/dark reading themes
 
+### R5 — Offline Reading & Share Extension Sync
+- **Offline reading**: Full article body content is fetched and saved locally at save time, enabling distraction-free reading without network
+- **Share extension sync**: Articles saved via share extension are automatically imported into the main app via App Group storage
+- Article deduplication in share extension (by URL)
+- Reading time auto-calculated from body word count
+- Real article titles/descriptions extracted from page metadata
+
+### R6 — Polish, Stability & Depth
+- Fix reported crashes and edge cases
+- URL deduplication across save methods
+- Empty state improvements throughout
+- Build stability (warnings resolved, clean builds)
+
 ## Architecture
 MVVM + Services. SQLite.swift for persistence. NaturalLanguage for on-device AI summaries.
 

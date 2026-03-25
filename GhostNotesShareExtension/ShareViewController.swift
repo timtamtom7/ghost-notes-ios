@@ -151,30 +151,92 @@ struct ShareView: View {
     }
     
     private func saveURL(_ url: URL) async {
-        // Extract domain from URL
+        // R5: Fetch article metadata and body content for offline reading
         let domain = url.host?.replacingOccurrences(of: "www.", with: "") ?? url.absoluteString
-        let title = domain.capitalized
         let savedAt = Date()
-        
-        // Save to shared UserDefaults (App Group)
+
+        var title = domain.capitalized
+        var articleDescription = "Saved from \(domain)"
+        var bodyContent = ""
+
+        // Attempt to fetch and extract article content for offline reading
+        do {
+            let (data, _) = try await URLSession.shared.data(from: url)
+            if let html = String(data: data, encoding: .utf8) ?? String(data: data, encoding: .isoLatin1) {
+                // Extract title
+                if let titleRange = html.range(of: "<title>"),
+                   let titleEndRange = html.range(of: "</title>") {
+                    let rawTitle = String(html[titleRange.upperBound..<titleEndRange.lowerBound])
+                    let cleanTitle = rawTitle.replacingOccurrences(of: "<[^>]+>", with: "", options: .regularExpression).trimmingCharacters(in: .whitespacesAndNewlines)
+                    if !cleanTitle.isEmpty { title = cleanTitle }
+                }
+                // Extract meta description
+                let metaPatterns = [
+                    "<meta name=\"description\" content=\"([^\"]+)\"",
+                    "<meta property=\"og:description\" content=\"([^\"]+)\""
+                ]
+                for pattern in metaPatterns {
+                    if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive),
+                       let match = regex.firstMatch(in: html, range: NSRange(html.startIndex..., in: html)),
+                       let range = Range(match.range(at: 1), in: html) {
+                        articleDescription = String(html[range])
+                        break
+                    }
+                }
+                // Extract body content
+                var cleaned = html
+                let removePatterns = [
+                    "<script[^>]*>[\\s\\S]*?</script>",
+                    "<style[^>]*>[\\s\\S]*?</style>",
+                    "<nav[^>]*>[\\s\\S]*?</nav>",
+                    "<footer[^>]*>[\\s\\S]*?</footer>",
+                    "<header[^>]*>[\\s\\S]*?</header>",
+                    "<aside[^>]*>[\\s\\S]*?</aside>"
+                ]
+                for pattern in removePatterns {
+                    if let regex = try? NSRegularExpression(pattern: pattern, options: .caseInsensitive) {
+                        cleaned = regex.stringByReplacingMatches(in: cleaned, range: NSRange(cleaned.startIndex..., in: cleaned), withTemplate: "")
+                    }
+                }
+                cleaned = cleaned.replacingOccurrences(of: "<[^>]+>", with: " ", options: .regularExpression)
+                cleaned = cleaned.replacingOccurrences(of: "&nbsp;", with: " ")
+                cleaned = cleaned.replacingOccurrences(of: "&amp;", with: "&")
+                cleaned = cleaned.replacingOccurrences(of: "&lt;", with: "<")
+                cleaned = cleaned.replacingOccurrences(of: "&gt;", with: ">")
+                cleaned = cleaned.replacingOccurrences(of: "&quot;", with: "\"")
+                cleaned = cleaned.replacingOccurrences(of: "&#39;", with: "'")
+                cleaned = cleaned.replacingOccurrences(of: "\\s+", with: " ", options: .regularExpression)
+                cleaned = cleaned.trimmingCharacters(in: .whitespacesAndNewlines)
+                bodyContent = cleaned
+            }
+        } catch {
+            // Network fetch failed — save with placeholder; user can read online later
+        }
+
+        // R5: Calculate reading time from body content
+        let wordCount = bodyContent.split(separator: " ").count
+        let readingTime = max(1, wordCount / 238)
+
+        // Save to App Group UserDefaults for main app to pick up
         if let userDefaults = UserDefaults(suiteName: "group.com.tomalabs.ghostnotes") {
             var articles: [[String: Any]] = []
             if let data = userDefaults.data(forKey: "shared_articles"),
                let existing = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] {
                 articles = existing
             }
-            
+
             let articleDict: [String: Any] = [
                 "id": UUID().uuidString,
                 "url": url.absoluteString,
                 "title": title,
                 "domain": domain,
-                "articleDescription": "Saved from \(domain)",
-                "readingTimeMinutes": 5,
+                "articleDescription": articleDescription,
+                "bodyContent": bodyContent,  // R5: Saved for offline reading
+                "readingTimeMinutes": readingTime,
                 "savedAt": savedAt.timeIntervalSince1970
             ]
             articles.insert(articleDict, at: 0)
-            
+
             if let data = try? JSONSerialization.data(withJSONObject: articles) {
                 userDefaults.set(data, forKey: "shared_articles")
             }

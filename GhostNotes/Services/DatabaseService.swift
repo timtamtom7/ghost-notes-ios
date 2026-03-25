@@ -2,15 +2,64 @@ import Foundation
 
 final class DatabaseService: @unchecked Sendable {
     static let shared = DatabaseService()
-    
+
     private let articlesKey = "ghost_notes_articles"
     private let collectionsKey = "ghost_notes_collections"
-    
+    private let sharedArticlesKey = "shared_articles"  // R5: App Group shared articles from share extension
+    private let importedIdsKey = "imported_shared_article_ids"  // Track already-imported share extension articles
+
+    // R5: Use App Group UserDefaults so share extension and main app share storage
     private var userDefaults: UserDefaults {
-        UserDefaults.standard
+        UserDefaults(suiteName: "group.com.tomalabs.ghostnotes") ?? UserDefaults.standard
     }
-    
-    private init() {}
+
+    private init() {
+        // R5: On init, import any new articles from share extension App Group
+        Task { await importSharedArticles() }
+    }
+
+    // MARK: - R5: Share Extension Sync
+    private func importSharedArticles() async {
+        guard let sharedDefaults = UserDefaults(suiteName: "group.com.tomalabs.ghostnotes"),
+              let data = sharedDefaults.data(forKey: sharedArticlesKey),
+              let sharedArticles = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {
+            return
+        }
+
+        let importedIds = userDefaults.stringArray(forKey: importedIdsKey) ?? []
+
+        for articleDict in sharedArticles {
+            guard let idString = articleDict["id"] as? String,
+                  !importedIds.contains(idString) else { continue }
+
+            let article = Article(
+                id: UUID(uuidString: idString) ?? UUID(),
+                url: articleDict["url"] as? String ?? "",
+                title: articleDict["title"] as? String ?? "",
+                domain: articleDict["domain"] as? String ?? "",
+                articleDescription: articleDict["articleDescription"] as? String ?? "",
+                bodyContent: articleDict["bodyContent"] as? String ?? "",
+                readingTimeMinutes: articleDict["readingTimeMinutes"] as? Int ?? 5,
+                isRead: false,
+                isArchived: false,
+                collectionName: nil,
+                savedAt: Date(timeIntervalSince1970: articleDict["savedAt"] as? TimeInterval ?? Date().timeIntervalSince1970),
+                readAt: nil,
+                readingProgress: 0
+            )
+
+            do {
+                try insertArticle(article)
+                var ids = importedIds
+                ids.append(idString)
+                userDefaults.set(ids, forKey: importedIdsKey)
+            } catch {
+                print("Failed to import shared article: \(error)")
+            }
+        }
+    }
+
+
     
     // MARK: - Articles
     
