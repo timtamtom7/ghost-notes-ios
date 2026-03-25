@@ -37,6 +37,12 @@ struct ContentView: View {
                             Label("Collections", systemImage: "folder")
                         }
                         .tag(LibraryViewModel.Tab.collections)
+                    
+                    HighlightsView(viewModel: viewModel)
+                        .tabItem {
+                            Label("Highlights", systemImage: "highlighter")
+                        }
+                        .tag(LibraryViewModel.Tab.highlights)
                 }
                 .tint(.accent)
             }
@@ -62,6 +68,10 @@ struct ContentView: View {
                     Label("Collections", systemImage: "folder")
                         .onTapGesture { viewModel.selectedTab = .collections }
                         .listRowBackground(viewModel.selectedTab == .collections ? Color.primary.opacity(0.15) : Color.clear)
+                    
+                    Label("Highlights", systemImage: "highlighter")
+                        .onTapGesture { viewModel.selectedTab = .highlights }
+                        .listRowBackground(viewModel.selectedTab == .highlights ? Color.primary.opacity(0.15) : Color.clear)
                 }
             }
             .listStyle(.sidebar)
@@ -74,6 +84,8 @@ struct ContentView: View {
                 ArchiveView(viewModel: viewModel)
             case .collections:
                 CollectionsView(viewModel: viewModel)
+            case .highlights:
+                HighlightsView(viewModel: viewModel)
             }
         }
         .task {

@@ -8,6 +8,12 @@ class ReadingViewModel {
     var fontSize: FontSize = .medium
     var readingTheme: ReadingTheme = .dark
     var isLoading = false
+    var highlights: [Highlight] = []
+    var bookmarks: [Bookmark] = []
+    var selectedText: String = ""
+    var showingHighlightPicker = false
+    var showingBookmarkSheet = false
+    var selectedBookmarkLabel = ""
     
     enum FontSize: String, CaseIterable {
         case small = "Small"
@@ -47,6 +53,16 @@ class ReadingViewModel {
     
     init(article: Article) {
         self.article = article
+        loadHighlightsAndBookmarks()
+    }
+    
+    func loadHighlightsAndBookmarks() {
+        do {
+            highlights = try DatabaseService.shared.fetchHighlights(forArticle: article.id)
+            bookmarks = try DatabaseService.shared.fetchBookmarks(forArticle: article.id)
+        } catch {
+            print("Failed to load highlights/bookmarks: \(error)")
+        }
     }
     
     func markAsRead() async {
@@ -57,6 +73,10 @@ class ReadingViewModel {
         do {
             try DatabaseService.shared.updateArticle(updated)
             article = updated
+            // Update streak
+            var streak = try DatabaseService.shared.fetchStreak()
+            streak.onArticleRead()
+            try DatabaseService.shared.saveStreak(streak)
         } catch {
             print("Failed to mark as read: \(error)")
         }
@@ -74,6 +94,45 @@ class ReadingViewModel {
             article = updated
         } catch {
             print("Failed to update progress: \(error)")
+        }
+    }
+    
+    func addHighlight(text: String, color: HighlightColor) async {
+        let highlight = Highlight(articleId: article.id, text: text, color: color)
+        do {
+            try DatabaseService.shared.insertHighlight(highlight)
+            highlights.insert(highlight, at: 0)
+        } catch {
+            print("Failed to save highlight: \(error)")
+        }
+    }
+    
+    func deleteHighlight(_ highlight: Highlight) async {
+        do {
+            try DatabaseService.shared.deleteHighlight(highlight)
+            highlights.removeAll { $0.id == highlight.id }
+        } catch {
+            print("Failed to delete highlight: \(error)")
+        }
+    }
+    
+    func addBookmark(label: String, position: Double) async {
+        let bookmark = Bookmark(articleId: article.id, label: label, scrollPosition: position)
+        do {
+            try DatabaseService.shared.insertBookmark(bookmark)
+            bookmarks.append(bookmark)
+            bookmarks.sort { $0.scrollPosition < $1.scrollPosition }
+        } catch {
+            print("Failed to save bookmark: \(error)")
+        }
+    }
+    
+    func deleteBookmark(_ bookmark: Bookmark) async {
+        do {
+            try DatabaseService.shared.deleteBookmark(bookmark)
+            bookmarks.removeAll { $0.id == bookmark.id }
+        } catch {
+            print("Failed to delete bookmark: \(error)")
         }
     }
 }

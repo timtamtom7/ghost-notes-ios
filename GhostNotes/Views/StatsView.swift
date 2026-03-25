@@ -2,6 +2,7 @@ import SwiftUI
 
 struct StatsView: View {
     let stats: ReadingStats
+    var streak: ReadingStreak = ReadingStreak()
     @Environment(\.dismiss) private var dismiss
     
     var body: some View {
@@ -11,6 +12,9 @@ struct StatsView: View {
                 
                 ScrollView {
                     VStack(spacing: 24) {
+                        // R7: Reading Streak Card
+                        streakCard
+                        
                         // Header stats
                         HStack(spacing: 16) {
                             StatCard(
@@ -91,7 +95,6 @@ struct StatsView: View {
                                 .foregroundColor(.textTertiary)
                         }
                         .padding(20)
-                        .frame(maxWidth: .infinity, alignment: .leading)
                         .background(Color.surface)
                         .clipShape(RoundedRectangle(cornerRadius: 16))
                     }
@@ -109,6 +112,67 @@ struct StatsView: View {
                 }
             }
         }
+    }
+    
+    private var streakCard: some View {
+        VStack(spacing: 16) {
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text("Reading Streak")
+                        .font(.headline)
+                        .foregroundColor(.textPrimary)
+                    
+                    Text("Days in a row with at least one article read")
+                        .font(.caption)
+                        .foregroundColor(.textSecondary)
+                }
+                
+                Spacer()
+                
+                Image(systemName: "flame.fill")
+                    .font(.title)
+                    .foregroundStyle(streak.currentStreak > 0 ? Color.orange : Color.ghost)
+            }
+            
+            HStack(spacing: 24) {
+                VStack(spacing: 4) {
+                    Text("\(streak.currentStreak)")
+                        .font(.system(size: 40, weight: .bold, design: .rounded))
+                        .foregroundColor(.primary)
+                    Text("Current")
+                        .font(.caption)
+                        .foregroundColor(.textSecondary)
+                }
+                
+                Divider()
+                    .frame(height: 50)
+                
+                VStack(spacing: 4) {
+                    Text("\(streak.longestStreak)")
+                        .font(.system(size: 40, weight: .bold, design: .rounded))
+                        .foregroundColor(.textPrimary)
+                    Text("Longest")
+                        .font(.caption)
+                        .foregroundColor(.textSecondary)
+                }
+                
+                Divider()
+                    .frame(height: 50)
+                
+                VStack(spacing: 4) {
+                    Text("\(streak.totalDaysRead)")
+                        .font(.system(size: 40, weight: .bold, design: .rounded))
+                        .foregroundColor(.textPrimary)
+                    Text("Total Days")
+                        .font(.caption)
+                        .foregroundColor(.textSecondary)
+                }
+            }
+            .frame(maxWidth: .infinity)
+        }
+        .padding(20)
+        .background(Color.surface)
+        .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 }
 
@@ -141,5 +205,5 @@ struct StatCard: View {
 }
 
 #Preview {
-    StatsView(stats: ReadingStats(totalSaved: 47, totalRead: 31, totalArchived: 16, totalReadingTimeMinutes: 284))
+    StatsView(stats: ReadingStats(totalSaved: 47, totalRead: 31, totalArchived: 16, totalReadingTimeMinutes: 284), streak: ReadingStreak(currentStreak: 7, longestStreak: 14, totalDaysRead: 42))
 }

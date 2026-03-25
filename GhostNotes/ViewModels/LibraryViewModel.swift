@@ -10,6 +10,9 @@ class LibraryViewModel {
     var archivedArticles: [Article] = []
     var collections: [Collection] = []
     var stats: ReadingStats = ReadingStats()
+    var streak: ReadingStreak = ReadingStreak()
+    var highlights: [Highlight] = []
+    var bookmarks: [Bookmark] = []
     var isLoading = false
     var errorMessage: String?
     var searchQuery = ""
@@ -17,8 +20,9 @@ class LibraryViewModel {
     var showingCollections = false
     var showingStats = false
     var selectedTab: Tab = .library
+    var selectedHighlightArticle: Article?
     
-    // Search filters
+    // R7: Search filters
     var filterReadStatus: FilterStatus = .all
     var filterDomain: String = ""
     
@@ -27,7 +31,7 @@ class LibraryViewModel {
     }
     
     enum Tab {
-        case library, archive, collections
+        case library, archive, collections, highlights
     }
     
     private var hapticEngine: CHHapticEngine?
@@ -153,6 +157,9 @@ class LibraryViewModel {
             archivedArticles = try DatabaseService.shared.fetchArchivedArticles()
             collections = try DatabaseService.shared.fetchAllCollections()
             stats = try DatabaseService.shared.fetchStats()
+            streak = try DatabaseService.shared.fetchStreak()
+            highlights = try DatabaseService.shared.fetchHighlights()
+            bookmarks = try DatabaseService.shared.fetchBookmarks()
         } catch {
             errorMessage = "Failed to load articles. Pull to refresh."
         }
@@ -296,10 +303,82 @@ class LibraryViewModel {
         }
         isLoading = true
         do {
-            articles = try DatabaseService.shared.searchArticles(query: searchQuery)
+            // R7: Full-text search including article body content
+            articles = try DatabaseService.shared.searchArticlesFullText(query: searchQuery)
         } catch {
             errorMessage = "Search failed."
         }
         isLoading = false
+    }
+    
+    // MARK: - R7: Highlights
+    
+    func addHighlight(text: String, articleId: UUID, color: HighlightColor = .primary, note: String? = nil) async {
+        let highlight = Highlight(articleId: articleId, text: text, note: note, color: color)
+        do {
+            try DatabaseService.shared.insertHighlight(highlight)
+            highlights.insert(highlight, at: 0)
+            playHaptic(.success)
+        } catch {
+            errorMessage = "Failed to save highlight."
+            playHaptic(.error)
+        }
+    }
+    
+    func deleteHighlight(_ highlight: Highlight) async {
+        do {
+            try DatabaseService.shared.deleteHighlight(highlight)
+            highlights.removeAll { $0.id == highlight.id }
+            playHaptic(.medium)
+        } catch {
+            errorMessage = "Failed to delete highlight."
+            playHaptic(.error)
+        }
+    }
+    
+    func highlightsForArticle(_ articleId: UUID) -> [Highlight] {
+        highlights.filter { $0.articleId == articleId }
+    }
+    
+    // MARK: - R7: Bookmarks
+    
+    func addBookmark(articleId: UUID, label: String, position: Double) async {
+        let bookmark = Bookmark(articleId: articleId, label: label, scrollPosition: position)
+        do {
+            try DatabaseService.shared.insertBookmark(bookmark)
+            bookmarks.insert(bookmark, at: 0)
+            playHaptic(.success)
+        } catch {
+            errorMessage = "Failed to save bookmark."
+            playHaptic(.error)
+        }
+    }
+    
+    func deleteBookmark(_ bookmark: Bookmark) async {
+        do {
+            try DatabaseService.shared.deleteBookmark(bookmark)
+            bookmarks.removeAll { $0.id == bookmark.id }
+            playHaptic(.medium)
+        } catch {
+            errorMessage = "Failed to delete bookmark."
+            playHaptic(.error)
+        }
+    }
+    
+    func bookmarksForArticle(_ articleId: UUID) -> [Bookmark] {
+        bookmarks.filter { $0.articleId == articleId }
+    }
+    
+    // MARK: - R7: Reading Streak
+    
+    func recordRead() async {
+        var updatedStreak = streak
+        updatedStreak.onArticleRead()
+        do {
+            try DatabaseService.shared.saveStreak(updatedStreak)
+            streak = updatedStreak
+        } catch {
+            print("Failed to save streak: \(error)")
+        }
     }
 }

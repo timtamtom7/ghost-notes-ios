@@ -93,3 +93,33 @@ MVVM + Services. SQLite.swift for persistence. NaturalLanguage for on-device AI 
 - NaturalLanguage framework (on-device AI)
 - WidgetKit (future)
 - Privacy manifest required
+
+## R7 — Advanced Features, Polish & Highlights
+- **Article highlights**: Long-press text in reading mode to highlight passages; choose from 4 highlight colors (purple, gold, rose, teal)
+- **Highlight management**: Dedicated highlights tab showing all highlights with article context; copy, delete, add notes
+- **Bookmarks**: Save bookmarks at any position in an article; manage bookmarks in a dedicated sheet
+- **Reading streaks**: Track consecutive days of reading; current/longest/total streak displayed in Stats
+- **Full-text search**: Search now covers article body content, not just title/description
+- **Design polish**: Consistent color tokens, improved empty states, performance optimizations
+
+## R8 — Advanced AI, Integrations
+- **AI reading recommendations**: On-device analysis suggests articles based on reading patterns
+- **Topic clustering**: Auto-organize articles by topic/theme using NaturalLanguage
+- **Smart collections**: Collections that auto-populate based on article content
+- **Readwise export**: Export highlights to Readwise via API
+- **Notion integration**: Save articles/highlights to a Notion database
+- **Advanced analytics**: Per-domain reading stats, reading time trends
+
+## R9 — Community, Subscriptions
+- **Public highlights feed**: Share highlights publicly (opt-in)
+- **Subscription tiers**: Free (5 articles/month), Pro (unlimited, highlights, streaks), Team (shared collections)
+- **Premium feature gating**: AI recommendations, integrations, export behind Pro/Team paywall
+- **Analytics dashboard**: Premium users see detailed reading analytics
+
+## R10 — Launch, Marketing, Platform
+- **App Store listing**: Complete App Store presence with screenshots, description, keywords
+- **Marketing site**: Ghostnotes.app with features, pricing, blog
+- **SEO**: App Store Optimization for relevant keywords
+- **Android app**: Native Android app for broader platform reach
+- **Web clipper**: Browser extension for saving articles from any website
+

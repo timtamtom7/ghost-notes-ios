@@ -156,4 +156,105 @@ final class DatabaseService: @unchecked Sendable {
         let totalTime = all.reduce(0) { $0 + $1.readingTimeMinutes }
         return ReadingStats(totalSaved: total, totalRead: read, totalArchived: archived, totalReadingTimeMinutes: totalTime)
     }
+    
+    // MARK: - R7: Highlights
+    
+    private let highlightsKey = "ghost_notes_highlights"
+    
+    func insertHighlight(_ highlight: Highlight) throws {
+        var highlights = try fetchHighlights()
+        highlights.insert(highlight, at: 0)
+        try saveHighlights(highlights)
+    }
+    
+    func fetchHighlights(forArticle articleId: UUID? = nil) throws -> [Highlight] {
+        guard let data = userDefaults.data(forKey: highlightsKey) else { return [] }
+        let decoder = JSONDecoder()
+        let all = try decoder.decode([Highlight].self, from: data)
+        if let articleId = articleId {
+            return all.filter { $0.articleId == articleId }.sorted { $0.selectedAt > $1.selectedAt }
+        }
+        return all.sorted { $0.selectedAt > $1.selectedAt }
+    }
+    
+    func updateHighlight(_ highlight: Highlight) throws {
+        var highlights = try fetchHighlights()
+        if let index = highlights.firstIndex(where: { $0.id == highlight.id }) {
+            highlights[index] = highlight
+            try saveHighlights(highlights)
+        }
+    }
+    
+    func deleteHighlight(_ highlight: Highlight) throws {
+        var highlights = try fetchHighlights()
+        highlights.removeAll { $0.id == highlight.id }
+        try saveHighlights(highlights)
+    }
+    
+    private func saveHighlights(_ highlights: [Highlight]) throws {
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(highlights)
+        userDefaults.set(data, forKey: highlightsKey)
+    }
+    
+    // MARK: - R7: Bookmarks
+    
+    private let bookmarksKey = "ghost_notes_bookmarks"
+    
+    func insertBookmark(_ bookmark: Bookmark) throws {
+        var bookmarks = try fetchBookmarks()
+        bookmarks.insert(bookmark, at: 0)
+        try saveBookmarks(bookmarks)
+    }
+    
+    func fetchBookmarks(forArticle articleId: UUID? = nil) throws -> [Bookmark] {
+        guard let data = userDefaults.data(forKey: bookmarksKey) else { return [] }
+        let decoder = JSONDecoder()
+        let all = try decoder.decode([Bookmark].self, from: data)
+        if let articleId = articleId {
+            return all.filter { $0.articleId == articleId }.sorted { $0.scrollPosition < $1.scrollPosition }
+        }
+        return all.sorted { $0.createdAt > $1.createdAt }
+    }
+    
+    func deleteBookmark(_ bookmark: Bookmark) throws {
+        var bookmarks = try fetchBookmarks()
+        bookmarks.removeAll { $0.id == bookmark.id }
+        try saveBookmarks(bookmarks)
+    }
+    
+    private func saveBookmarks(_ bookmarks: [Bookmark]) throws {
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(bookmarks)
+        userDefaults.set(data, forKey: bookmarksKey)
+    }
+    
+    // MARK: - R7: Reading Streaks
+    
+    private let streakKey = "ghost_notes_streak"
+    
+    func fetchStreak() throws -> ReadingStreak {
+        guard let data = userDefaults.data(forKey: streakKey) else { return ReadingStreak() }
+        let decoder = JSONDecoder()
+        return try decoder.decode(ReadingStreak.self, from: data)
+    }
+    
+    func saveStreak(_ streak: ReadingStreak) throws {
+        let encoder = JSONEncoder()
+        let data = try encoder.encode(streak)
+        userDefaults.set(data, forKey: streakKey)
+    }
+    
+    // MARK: - R7: Full-text Search (searches article body content too)
+    
+    func searchArticlesFullText(query: String) throws -> [Article] {
+        let all = try fetchAllArticlesIncludingArchived()
+        let lowercased = query.lowercased()
+        return all.filter {
+            $0.title.lowercased().contains(lowercased) ||
+            $0.domain.lowercased().contains(lowercased) ||
+            $0.articleDescription.lowercased().contains(lowercased) ||
+            $0.bodyContent.lowercased().contains(lowercased)
+        }.sorted { $0.savedAt > $1.savedAt }
+    }
 }

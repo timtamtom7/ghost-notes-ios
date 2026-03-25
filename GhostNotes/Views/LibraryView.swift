@@ -57,7 +57,7 @@ struct LibraryView: View {
             ReadingView(article: article)
         }
         .sheet(isPresented: $viewModel.showingStats) {
-            StatsView(stats: viewModel.stats)
+            StatsView(stats: viewModel.stats, streak: viewModel.streak)
         }
         .sheet(isPresented: $showingFilters) {
             SearchFiltersSheet(viewModel: viewModel, isPresented: $showingFilters)
