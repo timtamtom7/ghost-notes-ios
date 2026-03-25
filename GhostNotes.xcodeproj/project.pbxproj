@@ -7,114 +7,96 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0F0926CBB0A19DCAE404EF0F /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = D09C42ADC522106530084650 /* Theme.swift */; };
-		15AAC0F5B68DD7B0EB84ED41 /* ArticleStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76019A3E9D94C0FDEE58F5CA /* ArticleStore.swift */; };
-		4DFDE095CBC0FF6612AA8F2B /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 19F69FEA2B82E85A0889DA10 /* SQLite */; };
-		5BC3E0B3D5523BCF9FCAB46A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33A00C579521FA235AD0017 /* ContentView.swift */; };
-		5C26F43222C9161BF7C62992 /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC701E0A9F6E854A8809846C /* LibraryView.swift */; };
-		69496275B037330027A62655 /* ArticleDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B886435116089CD863D14837 /* ArticleDetailView.swift */; };
-		88B389B04509DC33955BCC63 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7E14921F95AB6C0A9DA829A /* SettingsView.swift */; };
-		B1B828CD73F5AD1698BDBD27 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3699314353B65FC6ADEFE07 /* Article.swift */; };
-		B657C43DF94343E3A431AE29 /* AddArticleSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = D80142CAFE9219387BABE93C /* AddArticleSheet.swift */; };
-		B6C1F47CB6B35206B6AE0757 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 94DED6B275EBD70E494184FC /* Assets.xcassets */; };
-		D702210728E3DBE2F9FF52DD /* GhostNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E875D36E792BBAFE3656E0B /* GhostNotesApp.swift */; };
-		DF6C6B9222665905B6D4155D /* ArticleCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F832C79C274EF3BC23E4D783 /* ArticleCardView.swift */; };
-		E9CF2FE66B5D4C7F256F0155 /* AISummaryCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 270FB6BA9C8BEDC8676B8CDE /* AISummaryCard.swift */; };
+		011D7DD09592F5DCF8B9736C /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7202AE2DAB9F7A50F55292DE /* ArticleService.swift */; };
+		0F87034F61CB25B7661B3DFC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 047A2235BC6523900570FCE2 /* ContentView.swift */; };
+		30461BDF85E692819A62FB33 /* GhostNotesApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 21D272CF9599CB59F506932A /* GhostNotesApp.swift */; };
+		30F8FD7688FFA7568BFC1BA3 /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = B0C6B5D42F3564378B7A4B59 /* LibraryViewModel.swift */; };
+		33FFE2119D851E351CE39006 /* ArticleCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8F247C692340C42CD8346D79 /* ArticleCard.swift */; };
+		34FF1DE92A7F46D4FADB1222 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3BB96FD3F12CC05D4F64C302 /* Assets.xcassets */; };
+		3DF122BE01275C4A203CD068 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D7EC36EEDE0F6C7F32B5F /* CollectionsView.swift */; };
+		50995D52012AB9F7DB01548E /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE346ED13A57FE3247699FE /* ReadingView.swift */; };
+		586E352E06CE5F939E8D2A05 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFAECAFFAAE5F5A8F92131C /* ArchiveView.swift */; };
+		728E60F80C98DE52A723EB0E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D05633B1F276C97EA9E83E67 /* PrivacyInfo.xcprivacy */; };
+		7B0B9BFA4AB62F4752F4CE1B /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C046D2CBC67DCE78B18D84 /* LibraryView.swift */; };
+		939B71C505B1B064D111F48D /* ReadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED8EACA26C73DC40B7DD42 /* ReadingViewModel.swift */; };
+		C3EDBCCD8ABBCB4734444A1A /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE258B75F967B3B066EB0 /* StatsView.swift */; };
+		D40021829950387B55C43B59 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B67E0488A4168F83E890D0 /* DatabaseService.swift */; };
+		D40622D57248B9D6753A89A7 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B635319616959E36FB9086C /* Article.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1E875D36E792BBAFE3656E0B /* GhostNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesApp.swift; sourceTree = "<group>"; };
-		270FB6BA9C8BEDC8676B8CDE /* AISummaryCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AISummaryCard.swift; sourceTree = "<group>"; };
+		02ED8EACA26C73DC40B7DD42 /* ReadingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingViewModel.swift; sourceTree = "<group>"; };
+		047A2235BC6523900570FCE2 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		21D272CF9599CB59F506932A /* GhostNotesApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesApp.swift; sourceTree = "<group>"; };
+		3ABBE258B75F967B3B066EB0 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
+		3BB96FD3F12CC05D4F64C302 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4CDAE07F8EC79F731317E919 /* GhostNotes.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = GhostNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		76019A3E9D94C0FDEE58F5CA /* ArticleStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleStore.swift; sourceTree = "<group>"; };
-		94DED6B275EBD70E494184FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A33A00C579521FA235AD0017 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		AC701E0A9F6E854A8809846C /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
-		B3699314353B65FC6ADEFE07 /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
-		B886435116089CD863D14837 /* ArticleDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleDetailView.swift; sourceTree = "<group>"; };
-		D09C42ADC522106530084650 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
-		D80142CAFE9219387BABE93C /* AddArticleSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddArticleSheet.swift; sourceTree = "<group>"; };
-		E7E14921F95AB6C0A9DA829A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
-		F832C79C274EF3BC23E4D783 /* ArticleCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCardView.swift; sourceTree = "<group>"; };
+		7202AE2DAB9F7A50F55292DE /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
+		78B67E0488A4168F83E890D0 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		8F247C692340C42CD8346D79 /* ArticleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCard.swift; sourceTree = "<group>"; };
+		9B635319616959E36FB9086C /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		B0C6B5D42F3564378B7A4B59 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		CBFAECAFFAAE5F5A8F92131C /* ArchiveView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArchiveView.swift; sourceTree = "<group>"; };
+		CE2D7EC36EEDE0F6C7F32B5F /* CollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsView.swift; sourceTree = "<group>"; };
+		CFE346ED13A57FE3247699FE /* ReadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingView.swift; sourceTree = "<group>"; };
+		D05633B1F276C97EA9E83E67 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		D5C046D2CBC67DCE78B18D84 /* LibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
-/* Begin PBXFrameworksBuildPhase section */
-		B7F1CCA171E289318ACC7A5A /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4DFDE095CBC0FF6612AA8F2B /* SQLite in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXFrameworksBuildPhase section */
-
 /* Begin PBXGroup section */
-		446B11E633CFE7DA64127FC4 /* Models */ = {
+		01140E3B9B8A55DC31FA9EAB /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				B3699314353B65FC6ADEFE07 /* Article.swift */,
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
-		67F8F57823229E92FA84001C /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				94DED6B275EBD70E494184FC /* Assets.xcassets */,
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
-		8640D091DCC3A2C7412738E3 /* Services */ = {
-			isa = PBXGroup;
-			children = (
-				76019A3E9D94C0FDEE58F5CA /* ArticleStore.swift */,
+				7202AE2DAB9F7A50F55292DE /* ArticleService.swift */,
+				78B67E0488A4168F83E890D0 /* DatabaseService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		366B25A65348ABD4CFABED84 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9B635319616959E36FB9086C /* Article.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		B483FD8D7D068F5FF4D154E1 = {
 			isa = PBXGroup;
 			children = (
-				F418E08F359F8CA62752257B /* App */,
-				446B11E633CFE7DA64127FC4 /* Models */,
-				67F8F57823229E92FA84001C /* Resources */,
-				8640D091DCC3A2C7412738E3 /* Services */,
-				F0C715E7CEAD88B6D163A47F /* Utilities */,
-				B5731CB437F41F3D9B4A0095 /* Views */,
+				FFE2F98FD87CB85A5403926A /* GhostNotes */,
 				FB56A96EAD881C626154F126 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		B5731CB437F41F3D9B4A0095 /* Views */ = {
+		DC177C6C9063C1E655D9DD88 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				D80142CAFE9219387BABE93C /* AddArticleSheet.swift */,
-				270FB6BA9C8BEDC8676B8CDE /* AISummaryCard.swift */,
-				F832C79C274EF3BC23E4D783 /* ArticleCardView.swift */,
-				B886435116089CD863D14837 /* ArticleDetailView.swift */,
-				AC701E0A9F6E854A8809846C /* LibraryView.swift */,
-				E7E14921F95AB6C0A9DA829A /* SettingsView.swift */,
+				8F247C692340C42CD8346D79 /* ArticleCard.swift */,
 			);
-			path = Views;
+			path = Components;
 			sourceTree = "<group>";
 		};
-		F0C715E7CEAD88B6D163A47F /* Utilities */ = {
+		ECC20969DC7496A949500514 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				D09C42ADC522106530084650 /* Theme.swift */,
-			);
-			path = Utilities;
-			sourceTree = "<group>";
-		};
-		F418E08F359F8CA62752257B /* App */ = {
-			isa = PBXGroup;
-			children = (
-				A33A00C579521FA235AD0017 /* ContentView.swift */,
-				1E875D36E792BBAFE3656E0B /* GhostNotesApp.swift */,
+				21D272CF9599CB59F506932A /* GhostNotesApp.swift */,
 			);
 			path = App;
+			sourceTree = "<group>";
+		};
+		ECE4C13E30D1801805820B5B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CBFAECAFFAAE5F5A8F92131C /* ArchiveView.swift */,
+				CE2D7EC36EEDE0F6C7F32B5F /* CollectionsView.swift */,
+				047A2235BC6523900570FCE2 /* ContentView.swift */,
+				D5C046D2CBC67DCE78B18D84 /* LibraryView.swift */,
+				CFE346ED13A57FE3247699FE /* ReadingView.swift */,
+				3ABBE258B75F967B3B066EB0 /* StatsView.swift */,
+				DC177C6C9063C1E655D9DD88 /* Components */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		FB56A96EAD881C626154F126 /* Products */ = {
@@ -123,6 +105,29 @@
 				4CDAE07F8EC79F731317E919 /* GhostNotes.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		FE2A0BD1C9DE1159C95BBCF1 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				B0C6B5D42F3564378B7A4B59 /* LibraryViewModel.swift */,
+				02ED8EACA26C73DC40B7DD42 /* ReadingViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		FFE2F98FD87CB85A5403926A /* GhostNotes */ = {
+			isa = PBXGroup;
+			children = (
+				3BB96FD3F12CC05D4F64C302 /* Assets.xcassets */,
+				D05633B1F276C97EA9E83E67 /* PrivacyInfo.xcprivacy */,
+				ECC20969DC7496A949500514 /* App */,
+				366B25A65348ABD4CFABED84 /* Models */,
+				01140E3B9B8A55DC31FA9EAB /* Services */,
+				FE2A0BD1C9DE1159C95BBCF1 /* ViewModels */,
+				ECE4C13E30D1801805820B5B /* Views */,
+			);
+			path = GhostNotes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -134,16 +139,12 @@
 			buildPhases = (
 				EAA4CCCB23D0541C162BC1E6 /* Sources */,
 				F703150EED917008A308E357 /* Resources */,
-				B7F1CCA171E289318ACC7A5A /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = GhostNotes;
-			packageProductDependencies = (
-				19F69FEA2B82E85A0889DA10 /* SQLite */,
-			);
 			productName = GhostNotes;
 			productReference = 4CDAE07F8EC79F731317E919 /* GhostNotes.app */;
 			productType = "com.apple.product-type.application";
@@ -155,7 +156,7 @@
 			isa = PBXProject;
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
-				LastUpgradeCheck = 1500;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					71AFDE0C796EBA9293F28855 = {
 						DevelopmentTeam = "";
@@ -172,9 +173,6 @@
 				en,
 			);
 			mainGroup = B483FD8D7D068F5FF4D154E1;
-			packageReferences = (
-				CD1CF5F90EAB6F66BEF79619 /* XCRemoteSwiftPackageReference "SQLite.swift" */,
-			);
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -188,7 +186,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B6C1F47CB6B35206B6AE0757 /* Assets.xcassets in Resources */,
+				34FF1DE92A7F46D4FADB1222 /* Assets.xcassets in Resources */,
+				728E60F80C98DE52A723EB0E /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -199,17 +198,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E9CF2FE66B5D4C7F256F0155 /* AISummaryCard.swift in Sources */,
-				B657C43DF94343E3A431AE29 /* AddArticleSheet.swift in Sources */,
-				B1B828CD73F5AD1698BDBD27 /* Article.swift in Sources */,
-				DF6C6B9222665905B6D4155D /* ArticleCardView.swift in Sources */,
-				69496275B037330027A62655 /* ArticleDetailView.swift in Sources */,
-				15AAC0F5B68DD7B0EB84ED41 /* ArticleStore.swift in Sources */,
-				5BC3E0B3D5523BCF9FCAB46A /* ContentView.swift in Sources */,
-				D702210728E3DBE2F9FF52DD /* GhostNotesApp.swift in Sources */,
-				5C26F43222C9161BF7C62992 /* LibraryView.swift in Sources */,
-				88B389B04509DC33955BCC63 /* SettingsView.swift in Sources */,
-				0F0926CBB0A19DCAE404EF0F /* Theme.swift in Sources */,
+				586E352E06CE5F939E8D2A05 /* ArchiveView.swift in Sources */,
+				D40622D57248B9D6753A89A7 /* Article.swift in Sources */,
+				33FFE2119D851E351CE39006 /* ArticleCard.swift in Sources */,
+				011D7DD09592F5DCF8B9736C /* ArticleService.swift in Sources */,
+				3DF122BE01275C4A203CD068 /* CollectionsView.swift in Sources */,
+				0F87034F61CB25B7661B3DFC /* ContentView.swift in Sources */,
+				D40021829950387B55C43B59 /* DatabaseService.swift in Sources */,
+				30461BDF85E692819A62FB33 /* GhostNotesApp.swift in Sources */,
+				7B0B9BFA4AB62F4752F4CE1B /* LibraryView.swift in Sources */,
+				30F8FD7688FFA7568BFC1BA3 /* LibraryViewModel.swift in Sources */,
+				50995D52012AB9F7DB01548E /* ReadingView.swift in Sources */,
+				939B71C505B1B064D111F48D /* ReadingViewModel.swift in Sources */,
+				C3EDBCCD8ABBCB4734444A1A /* StatsView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,12 +223,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ghost Notes";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ghostnotes.app;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomalabs.ghostnotes;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -266,13 +272,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -281,20 +285,17 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
-				SWIFT_VERSION = 5.9;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -332,13 +333,11 @@
 				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_STYLE = Automatic;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -353,13 +352,10 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
-				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
-				MARKETING_VERSION = 1.0.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -367,7 +363,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.9;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -378,12 +374,17 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ghost Notes";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.ghostnotes.app;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tomalabs.ghostnotes;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -411,25 +412,6 @@
 			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		CD1CF5F90EAB6F66BEF79619 /* XCRemoteSwiftPackageReference "SQLite.swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.15.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		19F69FEA2B82E85A0889DA10 /* SQLite */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CD1CF5F90EAB6F66BEF79619 /* XCRemoteSwiftPackageReference "SQLite.swift" */;
-			productName = SQLite;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C5B92A30EF955D15CE631E49 /* Project object */;
 }
