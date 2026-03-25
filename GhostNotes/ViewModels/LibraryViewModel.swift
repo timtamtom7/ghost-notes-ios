@@ -1,5 +1,7 @@
 import Foundation
 import SwiftUI
+import CoreHaptics
+import UserNotifications
 
 @MainActor
 @Observable
@@ -16,8 +18,131 @@ class LibraryViewModel {
     var showingStats = false
     var selectedTab: Tab = .library
     
+    // Search filters
+    var filterReadStatus: FilterStatus = .all
+    var filterDomain: String = ""
+    
+    enum FilterStatus {
+        case all, unread, read
+    }
+    
     enum Tab {
         case library, archive, collections
+    }
+    
+    private var hapticEngine: CHHapticEngine?
+    
+    init() {
+        setupHaptics()
+        requestNotificationPermission()
+    }
+    
+    private func setupHaptics() {
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+        do {
+            hapticEngine = try CHHapticEngine()
+            try hapticEngine?.start()
+        } catch {
+            print("Haptic engine error: \(error)")
+        }
+    }
+    
+    private func requestNotificationPermission() {
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .badge, .sound]) { granted, _ in
+            if granted {
+                Task { @MainActor in
+                    self.scheduleRetentionNudge()
+                }
+            }
+        }
+    }
+    
+    func scheduleRetentionNudge() {
+        let center = UNUserNotificationCenter.current()
+        center.removeAllPendingNotificationRequests()
+        
+        let content = UNMutableNotificationContent()
+        content.title = "Your reading list is waiting"
+        content.body = "You have \(articles.count) unread articles. Perfect time for a deep dive."
+        content.sound = .default
+        
+        // Schedule for 3 days from now
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 3 * 24 * 60 * 60, repeats: false)
+        let request = UNNotificationRequest(identifier: "retention_nudge", content: content, trigger: trigger)
+        
+        center.add(request)
+    }
+    
+    func playHaptic(_ style: HapticStyle) {
+        guard CHHapticEngine.capabilitiesForHardware().supportsHaptics else { return }
+        
+        var events: [CHHapticEvent] = []
+        
+        switch style {
+        case .light:
+            events = [CHHapticEvent(eventType: .hapticTransient, parameters: [
+                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.5),
+                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.5)
+            ], relativeTime: 0)]
+        case .medium:
+            events = [CHHapticEvent(eventType: .hapticTransient, parameters: [
+                CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.8),
+                CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.6)
+            ], relativeTime: 0)]
+        case .success:
+            events = [
+                CHHapticEvent(eventType: .hapticTransient, parameters: [
+                    CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.8),
+                    CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.4)
+                ], relativeTime: 0),
+                CHHapticEvent(eventType: .hapticTransient, parameters: [
+                    CHHapticEventParameter(parameterID: .hapticIntensity, value: 1.0),
+                    CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.6)
+                ], relativeTime: 0.1)
+            ]
+        case .error:
+            events = [
+                CHHapticEvent(eventType: .hapticTransient, parameters: [
+                    CHHapticEventParameter(parameterID: .hapticIntensity, value: 1.0),
+                    CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.8)
+                ], relativeTime: 0),
+                CHHapticEvent(eventType: .hapticTransient, parameters: [
+                    CHHapticEventParameter(parameterID: .hapticIntensity, value: 0.5),
+                    CHHapticEventParameter(parameterID: .hapticSharpness, value: 0.4)
+                ], relativeTime: 0.15)
+            ]
+        }
+        
+        do {
+            let pattern = try CHHapticPattern(events: events, parameters: [])
+            let player = try hapticEngine?.makePlayer(with: pattern)
+            try player?.start(atTime: 0)
+        } catch {
+            print("Haptic error: \(error)")
+        }
+    }
+    
+    enum HapticStyle {
+        case light, medium, success, error
+    }
+    
+    var filteredArticles: [Article] {
+        var result = articles
+        
+        switch filterReadStatus {
+        case .unread:
+            result = result.filter { !$0.isRead }
+        case .read:
+            result = result.filter { $0.isRead }
+        case .all:
+            break
+        }
+        
+        if !filterDomain.isEmpty {
+            result = result.filter { $0.domain.lowercased().contains(filterDomain.lowercased()) }
+        }
+        
+        return result
     }
     
     func load() async {
@@ -44,8 +169,10 @@ class LibraryViewModel {
             try await DatabaseService.shared.insertArticle(article)
             articles.insert(article, at: 0)
             stats = try await DatabaseService.shared.fetchStats()
+            playHaptic(.success)
         } catch {
             errorMessage = "Failed to save article. Check the URL and try again."
+            playHaptic(.error)
         }
         isLoading = false
     }
@@ -56,8 +183,10 @@ class LibraryViewModel {
             articles.removeAll { $0.id == article.id }
             archivedArticles.removeAll { $0.id == article.id }
             stats = try await DatabaseService.shared.fetchStats()
+            playHaptic(.medium)
         } catch {
             errorMessage = "Failed to delete article."
+            playHaptic(.error)
         }
     }
     
@@ -70,8 +199,10 @@ class LibraryViewModel {
             articles.removeAll { $0.id == article.id }
             archivedArticles.insert(updated, at: 0)
             stats = try await DatabaseService.shared.fetchStats()
+            playHaptic(.success)
         } catch {
             errorMessage = "Failed to archive article."
+            playHaptic(.error)
         }
     }
     
@@ -85,8 +216,10 @@ class LibraryViewModel {
                 articles[index] = updated
             }
             stats = try await DatabaseService.shared.fetchStats()
+            playHaptic(.light)
         } catch {
             errorMessage = "Failed to mark as read."
+            playHaptic(.error)
         }
     }
     
@@ -101,8 +234,10 @@ class LibraryViewModel {
                 archivedArticles[index] = updated
             }
             stats = try await DatabaseService.shared.fetchStats()
+            playHaptic(.light)
         } catch {
             errorMessage = "Failed to mark as unread."
+            playHaptic(.error)
         }
     }
     
@@ -114,8 +249,10 @@ class LibraryViewModel {
             archivedArticles.removeAll { $0.id == article.id }
             articles.insert(updated, at: 0)
             stats = try await DatabaseService.shared.fetchStats()
+            playHaptic(.success)
         } catch {
             errorMessage = "Failed to restore article."
+            playHaptic(.error)
         }
     }
     
@@ -125,8 +262,10 @@ class LibraryViewModel {
         do {
             try await DatabaseService.shared.insertCollection(collection)
             collections.append(collection)
+            playHaptic(.success)
         } catch {
             errorMessage = "Failed to create collection."
+            playHaptic(.error)
         }
     }
     
@@ -134,8 +273,10 @@ class LibraryViewModel {
         do {
             try await DatabaseService.shared.deleteCollection(collection)
             collections.removeAll { $0.id == collection.id }
+            playHaptic(.medium)
         } catch {
             errorMessage = "Failed to delete collection."
+            playHaptic(.error)
         }
     }
     

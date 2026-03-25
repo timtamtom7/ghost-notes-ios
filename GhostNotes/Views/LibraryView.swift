@@ -5,6 +5,7 @@ struct LibraryView: View {
     @State private var urlInput = ""
     @State private var showingAddSheet = false
     @State private var selectedArticle: Article?
+    @State private var showingFilters = false
     
     var body: some View {
         ZStack {
@@ -13,7 +14,7 @@ struct LibraryView: View {
             if viewModel.isLoading && viewModel.articles.isEmpty {
                 ProgressView()
                     .tint(.primary)
-            } else if viewModel.articles.isEmpty {
+            } else if viewModel.filteredArticles.isEmpty {
                 emptyState
             } else {
                 articleList
@@ -22,6 +23,15 @@ struct LibraryView: View {
         .navigationTitle("Library")
         .navigationBarTitleDisplayMode(.large)
         .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showingFilters.toggle()
+                } label: {
+                    Image(systemName: showingFilters ? "line.3.horizontal.decrease.circle.fill" : "line.3.horizontal.decrease.circle")
+                        .fontWeight(.semibold)
+                }
+                .tint(showingFilters ? .primary : .textSecondary)
+            }
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     showingAddSheet = true
@@ -49,6 +59,12 @@ struct LibraryView: View {
         .sheet(isPresented: $viewModel.showingStats) {
             StatsView(stats: viewModel.stats)
         }
+        .sheet(isPresented: $showingFilters) {
+            SearchFiltersSheet(viewModel: viewModel, isPresented: $showingFilters)
+        }
+        .task {
+            await viewModel.load()
+        }
     }
     
     private var emptyState: some View {
@@ -57,29 +73,44 @@ struct LibraryView: View {
                 .font(.system(size: 56))
                 .foregroundColor(.ghost)
             
-            Text("Your library is empty")
+            Text(viewModel.searchQuery.isEmpty ? "Your library is empty" : "No results")
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundColor(.textPrimary)
             
-            Text("Save articles from around the web.\nThey'll be here waiting for you.")
+            Text(viewModel.searchQuery.isEmpty ?
+                 "Save articles from around the web.\nThey'll be here waiting for you." :
+                 "Try a different search or clear filters.")
                 .font(.body)
                 .foregroundColor(.textSecondary)
                 .multilineTextAlignment(.center)
             
-            Button {
-                showingAddSheet = true
-            } label: {
-                Label("Save your first article", systemImage: "plus")
-                    .font(.body)
-                    .fontWeight(.medium)
-                    .foregroundColor(.background)
-                    .padding(.horizontal, 24)
-                    .padding(.vertical, 12)
-                    .background(Color.primary)
-                    .clipShape(Capsule())
+            if !viewModel.searchQuery.isEmpty {
+                Button {
+                    viewModel.searchQuery = ""
+                    Task { await viewModel.load() }
+                } label: {
+                    Text("Clear search")
+                        .font(.body)
+                        .fontWeight(.medium)
+                        .foregroundColor(.primary)
+                }
+                .padding(.top, 8)
+            } else {
+                Button {
+                    showingAddSheet = true
+                } label: {
+                    Label("Save your first article", systemImage: "plus")
+                        .font(.body)
+                        .fontWeight(.medium)
+                        .foregroundColor(.background)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 12)
+                        .background(Color.primary)
+                        .clipShape(Capsule())
+                }
+                .padding(.top, 8)
             }
-            .padding(.top, 8)
         }
         .padding(32)
     }
@@ -87,7 +118,11 @@ struct LibraryView: View {
     private var articleList: some View {
         ScrollView {
             LazyVStack(spacing: 12) {
-                ForEach(viewModel.articles) { article in
+                if showingFilters {
+                    activeFiltersBar
+                }
+                
+                ForEach(viewModel.filteredArticles) { article in
                     ArticleCard(article: article)
                         .onTapGesture {
                             selectedArticle = article
@@ -120,6 +155,120 @@ struct LibraryView: View {
         }
         .refreshable {
             await viewModel.load()
+        }
+    }
+    
+    private var activeFiltersBar: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 8) {
+                if viewModel.filterReadStatus != .all {
+                    filterChip(label: viewModel.filterReadStatus == .unread ? "Unread" : "Read") {
+                        viewModel.filterReadStatus = .all
+                    }
+                }
+                if !viewModel.filterDomain.isEmpty {
+                    filterChip(label: viewModel.filterDomain) {
+                        viewModel.filterDomain = ""
+                    }
+                }
+            }
+            .padding(.vertical, 8)
+        }
+    }
+    
+    private func filterChip(label: String, onRemove: @escaping () -> Void) -> some View {
+        HStack(spacing: 4) {
+            Text(label)
+                .font(.caption)
+                .foregroundColor(.background)
+            
+            Button {
+                onRemove()
+            } label: {
+                Image(systemName: "xmark.circle.fill")
+                    .font(.caption)
+                    .foregroundColor(.background.opacity(0.7))
+            }
+        }
+        .padding(.horizontal, 12)
+        .padding(.vertical, 6)
+        .background(Color.primary)
+        .clipShape(Capsule())
+    }
+}
+
+struct SearchFiltersSheet: View {
+    @Bindable var viewModel: LibraryViewModel
+    @Binding var isPresented: Bool
+    
+    var body: some View {
+        NavigationStack {
+            ZStack {
+                Color.background.ignoresSafeArea()
+                
+                VStack(spacing: 24) {
+                    // Read status filter
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Status")
+                            .font(.headline)
+                            .foregroundColor(.textPrimary)
+                        
+                        HStack(spacing: 8) {
+                            filterButton(title: "All", isSelected: viewModel.filterReadStatus == .all) {
+                                viewModel.filterReadStatus = .all
+                            }
+                            filterButton(title: "Unread", isSelected: viewModel.filterReadStatus == .unread) {
+                                viewModel.filterReadStatus = .unread
+                            }
+                            filterButton(title: "Read", isSelected: viewModel.filterReadStatus == .read) {
+                                viewModel.filterReadStatus = .read
+                            }
+                        }
+                    }
+                    
+                    // Domain filter
+                    VStack(alignment: .leading, spacing: 12) {
+                        Text("Domain")
+                            .font(.headline)
+                            .foregroundColor(.textPrimary)
+                        
+                        TextField("e.g., medium.com", text: $viewModel.filterDomain)
+                            .textFieldStyle(.plain)
+                            .font(.body)
+                            .padding(12)
+                            .background(Color.surfaceElevated)
+                            .clipShape(RoundedRectangle(cornerRadius: 8))
+                    }
+                    
+                    Spacer()
+                }
+                .padding(24)
+            }
+            .navigationTitle("Filters")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Button("Done") {
+                        isPresented = false
+                    }
+                    .foregroundColor(.primary)
+                }
+            }
+        }
+        .presentationDetents([.medium])
+        .presentationDragIndicator(.visible)
+    }
+    
+    private func filterButton(title: String, isSelected: Bool, action: @escaping () -> Void) -> some View {
+        Button(action: action) {
+            Text(title)
+                .font(.body)
+                .fontWeight(isSelected ? .semibold : .regular)
+                .frame(maxWidth: .infinity)
+                .padding(.vertical, 10)
+                .background(isSelected ? Color.primary : Color.surface)
+                .foregroundColor(isSelected ? .background : .textSecondary)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
         }
     }
 }
