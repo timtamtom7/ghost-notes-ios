@@ -209,10 +209,10 @@ struct HighlightableText: View {
     let textColor: Color
     let fontSize: CGFloat
     let onHighlight: (String) -> Void
-    
+
     var body: some View {
         Text(text)
-            .font(.custom("NewYork-Regular", size: fontSize))
+            .font(.system(size: fontSize, design: .serif))
             .foregroundColor(textColor)
             .lineSpacing(8)
             .textSelection(.enabled)

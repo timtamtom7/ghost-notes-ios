@@ -2,7 +2,6 @@ import SwiftUI
 
 // R12: Community & Social Features View
 struct CommunityView: View {
-    @State private var internalViewModel = LibraryViewModel()
     @State private var socialService = GhostNotesR12Service.shared
     @State private var selectedTab: CommunityTab = .feed
     @State private var showingNewPost = false
@@ -11,12 +10,21 @@ struct CommunityView: View {
 
     var viewModel: LibraryViewModel? = nil
 
-    init(viewModel: LibraryViewModel? = nil) {
-        self.viewModel = viewModel
-    }
+    // Lazily create internal VM only when no viewModel is provided (e.g., in previews)
+    @State private var internalViewModel: LibraryViewModel?
 
     private var vm: LibraryViewModel {
-        viewModel ?? internalViewModel
+        // When viewModel is provided (normal usage from ContentView), use it directly.
+        // Only create internalViewModel lazily for preview contexts.
+        if let vm = viewModel {
+            return vm
+        }
+        if let cached = internalViewModel {
+            return cached
+        }
+        let newVM = LibraryViewModel()
+        internalViewModel = newVM
+        return newVM
     }
 
     enum CommunityTab: String, CaseIterable {

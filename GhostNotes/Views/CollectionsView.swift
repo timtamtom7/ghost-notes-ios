@@ -81,7 +81,10 @@ struct CollectionsView: View {
         ScrollView {
             LazyVStack(spacing: 12) {
                 ForEach(viewModel.collections) { collection in
-                    CollectionRow(collection: collection)
+                    CollectionRow(
+                        collection: collection,
+                        articleCount: viewModel.articles.filter { $0.collectionName == collection.name }.count
+                    )
                         .contextMenu {
                             Button(role: .destructive) {
                                 Task { await viewModel.deleteCollection(collection) }
@@ -99,7 +102,8 @@ struct CollectionsView: View {
 
 struct CollectionRow: View {
     let collection: Collection
-    
+    let articleCount: Int
+
     var body: some View {
         HStack(spacing: 16) {
             Image(systemName: "folder.fill")
@@ -108,14 +112,14 @@ struct CollectionRow: View {
                 .frame(width: 44, height: 44)
                 .background(Color.surfaceElevated)
                 .clipShape(RoundedRectangle(cornerRadius: 10))
-            
+
             VStack(alignment: .leading, spacing: 4) {
                 Text(collection.name)
                     .font(.body)
                     .fontWeight(.medium)
                     .foregroundColor(.textPrimary)
-                
-                Text("0 articles")
+
+                Text("\(articleCount) article\(articleCount == 1 ? "" : "s")")
                     .font(.caption)
                     .foregroundColor(.textSecondary)
             }

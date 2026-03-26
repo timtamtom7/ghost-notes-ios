@@ -48,7 +48,7 @@ final class GhostNotesR11Service: ObservableObject {
 
     // MARK: - Email Digest
 
-    func generateDigestEmail(articles: [SavedArticle]) -> String {
+    func generateDigestEmail(articles: [Article]) -> String {
         var email = "Your Weekly Reading Digest\n\n"
 
         for article in articles.prefix(5) {
@@ -70,13 +70,6 @@ final class GhostNotesR11Service: ObservableObject {
         }
 
         return email
-    }
-
-    struct SavedArticle {
-        let id: UUID
-        let title: String
-        let url: String
-        let savedAt: Date
     }
 
     private func formatDate(_ date: Date) -> String {
