@@ -53,7 +53,7 @@ final class GhostNotesR11Service: ObservableObject {
 
         for article in articles.prefix(5) {
             email += "📖 \(article.title)\n"
-            email += "   \(article.url\n"
+            email += "   \(article.url)\n"
             email += "   Saved \(formatDate(article.savedAt))\n\n"
         }
 

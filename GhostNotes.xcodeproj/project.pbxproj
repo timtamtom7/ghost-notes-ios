@@ -19,9 +19,12 @@
 		586E352E06CE5F939E8D2A05 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFAECAFFAAE5F5A8F92131C /* ArchiveView.swift */; };
 		6D03CF42099566CC0BF11930 /* RecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8C71201DF801A78E3753C /* RecommendationService.swift */; };
 		728E60F80C98DE52A723EB0E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D05633B1F276C97EA9E83E67 /* PrivacyInfo.xcprivacy */; };
+		7723557E1F6778272D0DCA78 /* GhostNotesR12Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464CEF47D1C5D30F04438380 /* GhostNotesR12Service.swift */; };
 		7B0B9BFA4AB62F4752F4CE1B /* LibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5C046D2CBC67DCE78B18D84 /* LibraryView.swift */; };
 		84CC276648F5186CAC0371F2 /* HighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 265A2924B0A6C25868AD1320 /* HighlightsView.swift */; };
+		8E94970DE2A102F51B62CC25 /* CommunityView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64C28A894ED1DC2157D53FEF /* CommunityView.swift */; };
 		939B71C505B1B064D111F48D /* ReadingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 02ED8EACA26C73DC40B7DD42 /* ReadingViewModel.swift */; };
+		9F175F30A24C7252B9B53507 /* GhostNotesR11Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6C5D920B26D1A5C49578D1EF /* GhostNotesR11Service.swift */; };
 		C3EDBCCD8ABBCB4734444A1A /* StatsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ABBE258B75F967B3B066EB0 /* StatsView.swift */; };
 		CFAD3F45858EEF7115DDD956 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 55B5806A721FC9BFA51D7F7E /* SubscriptionService.swift */; };
 		D40021829950387B55C43B59 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 78B67E0488A4168F83E890D0 /* DatabaseService.swift */; };
@@ -37,9 +40,12 @@
 		265A2924B0A6C25868AD1320 /* HighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HighlightsView.swift; sourceTree = "<group>"; };
 		3ABBE258B75F967B3B066EB0 /* StatsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatsView.swift; sourceTree = "<group>"; };
 		3BB96FD3F12CC05D4F64C302 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		464CEF47D1C5D30F04438380 /* GhostNotesR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesR12Service.swift; sourceTree = "<group>"; };
 		4B88D5BB73A7111EA6CA56B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		4CDAE07F8EC79F731317E919 /* GhostNotes.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = GhostNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		55B5806A721FC9BFA51D7F7E /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
+		64C28A894ED1DC2157D53FEF /* CommunityView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityView.swift; sourceTree = "<group>"; };
+		6C5D920B26D1A5C49578D1EF /* GhostNotesR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesR11Service.swift; sourceTree = "<group>"; };
 		7202AE2DAB9F7A50F55292DE /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		78B67E0488A4168F83E890D0 /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		8F247C692340C42CD8346D79 /* ArticleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCard.swift; sourceTree = "<group>"; };
@@ -63,6 +69,8 @@
 			children = (
 				7202AE2DAB9F7A50F55292DE /* ArticleService.swift */,
 				78B67E0488A4168F83E890D0 /* DatabaseService.swift */,
+				6C5D920B26D1A5C49578D1EF /* GhostNotesR11Service.swift */,
+				464CEF47D1C5D30F04438380 /* GhostNotesR12Service.swift */,
 				CFB8C71201DF801A78E3753C /* RecommendationService.swift */,
 				D713F54752068692C04DF525 /* ShareService.swift */,
 				55B5806A721FC9BFA51D7F7E /* SubscriptionService.swift */,
@@ -109,6 +117,7 @@
 			children = (
 				CBFAECAFFAAE5F5A8F92131C /* ArchiveView.swift */,
 				CE2D7EC36EEDE0F6C7F32B5F /* CollectionsView.swift */,
+				64C28A894ED1DC2157D53FEF /* CommunityView.swift */,
 				047A2235BC6523900570FCE2 /* ContentView.swift */,
 				265A2924B0A6C25868AD1320 /* HighlightsView.swift */,
 				D5C046D2CBC67DCE78B18D84 /* LibraryView.swift */,
@@ -261,9 +270,12 @@
 				33FFE2119D851E351CE39006 /* ArticleCard.swift in Sources */,
 				011D7DD09592F5DCF8B9736C /* ArticleService.swift in Sources */,
 				3DF122BE01275C4A203CD068 /* CollectionsView.swift in Sources */,
+				8E94970DE2A102F51B62CC25 /* CommunityView.swift in Sources */,
 				0F87034F61CB25B7661B3DFC /* ContentView.swift in Sources */,
 				D40021829950387B55C43B59 /* DatabaseService.swift in Sources */,
 				30461BDF85E692819A62FB33 /* GhostNotesApp.swift in Sources */,
+				9F175F30A24C7252B9B53507 /* GhostNotesR11Service.swift in Sources */,
+				7723557E1F6778272D0DCA78 /* GhostNotesR12Service.swift in Sources */,
 				F17D88BB1D4552744390D103 /* Highlight.swift in Sources */,
 				84CC276648F5186CAC0371F2 /* HighlightsView.swift in Sources */,
 				7B0B9BFA4AB62F4752F4CE1B /* LibraryView.swift in Sources */,

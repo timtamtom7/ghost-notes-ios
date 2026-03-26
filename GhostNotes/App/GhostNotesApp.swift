@@ -15,7 +15,24 @@ extension Color {
     static let ghost = Color(hex: "3D3D50")
     static let success = Color(hex: "34C759")
     static let error = Color(hex: "FF453A")
-    
+}
+
+extension ShapeStyle where Self == Color {
+    static var background: Color { Color.background }
+    static var surface: Color { Color.surface }
+    static var surfaceElevated: Color { Color.surfaceElevated }
+    static var primary: Color { Color.primary }
+    static var accent: Color { Color.accent }
+    static var textPrimary: Color { Color.textPrimary }
+    static var textSecondary: Color { Color.textSecondary }
+    static var textTertiary: Color { Color.textTertiary }
+    static var separator: Color { Color.separator }
+    static var ghost: Color { Color.ghost }
+    static var success: Color { Color.success }
+    static var error: Color { Color.error }
+}
+
+extension Color {
     init(hex: String) {
         let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
         var int: UInt64 = 0

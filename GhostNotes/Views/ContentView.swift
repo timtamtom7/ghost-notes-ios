@@ -43,6 +43,12 @@ struct ContentView: View {
                             Label("Highlights", systemImage: "highlighter")
                         }
                         .tag(LibraryViewModel.Tab.highlights)
+                    
+                    CommunityView(viewModel: viewModel)
+                        .tabItem {
+                            Label("Community", systemImage: "person.3")
+                        }
+                        .tag(LibraryViewModel.Tab.community)
                 }
                 .tint(.accent)
             }
@@ -72,6 +78,10 @@ struct ContentView: View {
                     Label("Highlights", systemImage: "highlighter")
                         .onTapGesture { viewModel.selectedTab = .highlights }
                         .listRowBackground(viewModel.selectedTab == .highlights ? Color.primary.opacity(0.15) : Color.clear)
+                    
+                    Label("Community", systemImage: "person.3")
+                        .onTapGesture { viewModel.selectedTab = .community }
+                        .listRowBackground(viewModel.selectedTab == .community ? Color.primary.opacity(0.15) : Color.clear)
                 }
             }
             .listStyle(.sidebar)
@@ -86,6 +96,8 @@ struct ContentView: View {
                 CollectionsView(viewModel: viewModel)
             case .highlights:
                 HighlightsView(viewModel: viewModel)
+            case .community:
+                CommunityView(viewModel: viewModel)
             }
         }
         .task {
