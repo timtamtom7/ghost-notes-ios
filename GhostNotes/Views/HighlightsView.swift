@@ -8,7 +8,7 @@ struct HighlightsView: View {
     var body: some View {
         ZStack {
             Color.background.ignoresSafeArea()
-            
+
             if viewModel.highlights.isEmpty {
                 emptyState
             } else {
@@ -17,6 +17,18 @@ struct HighlightsView: View {
         }
         .navigationTitle("Highlights")
         .navigationBarTitleDisplayMode(.large)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                NavigationLink {
+                    HighlightsExportView(viewModel: viewModel)
+                } label: {
+                    Image(systemName: "square.and.arrow.up")
+                        .font(.subheadline)
+                }
+                .tint(.textSecondary)
+                .accessibilityLabel("Export highlights")
+            }
+        }
         .sheet(item: $selectedHighlight) { highlight in
             if let article = viewModel.articles.first(where: { $0.id == highlight.articleId }) {
                 HighlightDetailSheet(highlight: highlight, article: article) {

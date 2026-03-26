@@ -31,7 +31,7 @@ class LibraryViewModel {
     }
     
     enum Tab {
-        case library, archive, collections, highlights, community
+        case library, archive, collections, highlights, community, forYou, smartCollections
     }
     
     private var hapticEngine: CHHapticEngine?
