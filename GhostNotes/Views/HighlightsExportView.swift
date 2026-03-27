@@ -144,7 +144,7 @@ struct HighlightsExportView: View {
                     }
                     .padding(12)
                     .background(Color.surfaceElevated)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusSmall))
 
                     if highlight.id != viewModel.highlights.prefix(3).last?.id {
                         Divider()
@@ -161,7 +161,7 @@ struct HighlightsExportView: View {
             }
             .padding(16)
             .background(Color.surface)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
         }
     }
 
@@ -181,6 +181,7 @@ struct HighlightsExportView: View {
 
     private func formatRow(_ format: ExportFormat) -> some View {
         Button {
+            Theme.haptic(.light)
             selectedFormat = format
         } label: {
             HStack(spacing: 16) {
@@ -210,18 +211,19 @@ struct HighlightsExportView: View {
             }
             .padding(16)
             .background(selectedFormat == format ? Color.primary.opacity(0.08) : Color.surface)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
             .overlay(
-                RoundedRectangle(cornerRadius: 12)
+                RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium)
                     .stroke(selectedFormat == format ? Color.primary.opacity(0.3) : Color.clear, lineWidth: 1)
             )
         }
         .buttonStyle(.plain)
-        .accessibilityLabel("\(format.rawValue): \(format.description)")
+        .accessibilityLabel("\(format.rawValue): \(format.description), \(selectedFormat == format ? "selected" : "not selected")")
     }
 
     private var exportButton: some View {
         Button {
+            Theme.haptic(.success)
             Task { await performExport() }
         } label: {
             HStack(spacing: 8) {
@@ -239,7 +241,7 @@ struct HighlightsExportView: View {
             .padding(.vertical, 16)
             .background(viewModel.highlights.isEmpty ? Color.ghost : Color.primary)
             .foregroundColor(.background)
-            .clipShape(RoundedRectangle(cornerRadius: 12))
+            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
         }
         .disabled(viewModel.highlights.isEmpty || isExporting)
         .accessibilityLabel(buttonTitle)
@@ -297,7 +299,7 @@ struct HighlightsExportView: View {
         }
         .padding(16)
         .background(Color.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
     }
 
     private var articlesWithHighlights: Int {
@@ -375,7 +377,7 @@ struct ShareExportSheet: View {
                         .scrollContentBackground(.hidden)
                         .padding(16)
                         .background(Color.surface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
                         .frame(maxHeight: .infinity)
 
                     ShareLink(
@@ -389,7 +391,7 @@ struct ShareExportSheet: View {
                             .padding(.vertical, 16)
                             .background(Color.primary)
                             .foregroundColor(.background)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
                     }
                     .padding(.horizontal, 16)
                     .padding(.bottom, 16)
@@ -400,8 +402,14 @@ struct ShareExportSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
-                        .foregroundColor(.primary)
+                    Button {
+                        Theme.haptic(.light)
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                    }
+                    .foregroundColor(.primary)
+                    .accessibilityLabel("Done sharing export")
                 }
             }
         }

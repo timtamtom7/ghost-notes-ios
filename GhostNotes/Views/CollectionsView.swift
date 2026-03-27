@@ -4,11 +4,11 @@ struct CollectionsView: View {
     @Bindable var viewModel: LibraryViewModel
     @State private var showingAddCollection = false
     @State private var newCollectionName = ""
-    
+
     var body: some View {
         ZStack {
             Color.background.ignoresSafeArea()
-            
+
             if viewModel.collections.isEmpty {
                 emptyState
             } else {
@@ -20,12 +20,14 @@ struct CollectionsView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    Theme.haptic(.light)
                     showingAddCollection = true
                 } label: {
                     Image(systemName: "plus")
                         .fontWeight(.semibold)
                 }
                 .tint(.primary)
+                .accessibilityLabel("Create new collection")
             }
         }
         .alert("New Collection", isPresented: $showingAddCollection) {
@@ -34,6 +36,7 @@ struct CollectionsView: View {
                 newCollectionName = ""
             }
             Button("Create") {
+                Theme.haptic(.success)
                 Task {
                     await viewModel.addCollection(name: newCollectionName)
                     newCollectionName = ""
@@ -43,24 +46,25 @@ struct CollectionsView: View {
             Text("Enter a name for your new collection.")
         }
     }
-    
+
     private var emptyState: some View {
         VStack(spacing: 16) {
             Image(systemName: "folder")
                 .font(.system(size: 56))
                 .foregroundColor(.ghost)
-            
+
             Text("No collections yet")
                 .font(.title2)
                 .fontWeight(.semibold)
                 .foregroundColor(.textPrimary)
-            
+
             Text("Create collections to organize\nyour saved articles.")
                 .font(.body)
                 .foregroundColor(.textSecondary)
                 .multilineTextAlignment(.center)
-            
+
             Button {
+                Theme.haptic(.light)
                 showingAddCollection = true
             } label: {
                 Label("Create a collection", systemImage: "plus")
@@ -76,7 +80,7 @@ struct CollectionsView: View {
         }
         .padding(32)
     }
-    
+
     private var collectionList: some View {
         ScrollView {
             LazyVStack(spacing: 12) {
@@ -87,6 +91,7 @@ struct CollectionsView: View {
                     )
                         .contextMenu {
                             Button(role: .destructive) {
+                                Theme.haptic(.warning)
                                 Task { await viewModel.deleteCollection(collection) }
                             } label: {
                                 Label("Delete", systemImage: "trash")
@@ -111,7 +116,7 @@ struct CollectionRow: View {
                 .foregroundColor(.primary)
                 .frame(width: 44, height: 44)
                 .background(Color.surfaceElevated)
-                .clipShape(RoundedRectangle(cornerRadius: 10))
+                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
 
             VStack(alignment: .leading, spacing: 4) {
                 Text(collection.name)
@@ -123,16 +128,18 @@ struct CollectionRow: View {
                     .font(.caption)
                     .foregroundColor(.textSecondary)
             }
-            
+
             Spacer()
-            
+
             Image(systemName: "chevron.right")
                 .font(.caption)
                 .foregroundColor(.textTertiary)
         }
         .padding(16)
         .background(Color.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(collection.name) collection, \(articleCount) articles")
     }
 }
 

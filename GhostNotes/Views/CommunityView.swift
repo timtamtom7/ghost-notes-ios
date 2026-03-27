@@ -10,12 +10,10 @@ struct CommunityView: View {
 
     var viewModel: LibraryViewModel? = nil
 
-    // Lazily create internal VM only when no viewModel is provided (e.g., in previews)
+    // Lazily create internal VM only when no viewmodel is provided (e.g., in previews)
     @State private var internalViewModel: LibraryViewModel?
 
     private var vm: LibraryViewModel {
-        // When viewModel is provided (normal usage from ContentView), use it directly.
-        // Only create internalViewModel lazily for preview contexts.
         if let vm = viewModel {
             return vm
         }
@@ -66,6 +64,7 @@ struct CommunityView: View {
             .toolbar {
                 ToolbarItem(placement: .primaryAction) {
                     Button {
+                        Theme.haptic(.light)
                         switch selectedTab {
                         case .feed:
                             showingNewPost = true
@@ -79,6 +78,7 @@ struct CommunityView: View {
                             .font(.title2)
                             .foregroundStyle(.accent)
                     }
+                    .accessibilityLabel("Create new \(selectedTab.rawValue.lowercased())")
                 }
             }
             .sheet(isPresented: $showingNewPost) {
@@ -128,6 +128,7 @@ struct CommunityView: View {
                 .multilineTextAlignment(.center)
 
             Button {
+                Theme.haptic(.light)
                 showingNewPost = true
             } label: {
                 Text("Create Post")
@@ -138,6 +139,7 @@ struct CommunityView: View {
                     .background(Color.primary)
                     .clipShape(Capsule())
             }
+            .accessibilityLabel("Create a post")
         }
         .padding(.vertical, 48)
     }
@@ -174,6 +176,7 @@ struct CommunityView: View {
                 .multilineTextAlignment(.center)
 
             Button {
+                Theme.haptic(.light)
                 showingNewCircle = true
             } label: {
                 Text("Start a Circle")
@@ -184,6 +187,7 @@ struct CommunityView: View {
                     .background(Color.primary)
                     .clipShape(Capsule())
             }
+            .accessibilityLabel("Start a reading circle")
         }
         .padding(.vertical, 48)
     }
@@ -220,6 +224,7 @@ struct CommunityView: View {
                 .multilineTextAlignment(.center)
 
             Button {
+                Theme.haptic(.light)
                 showingNewLibrary = true
             } label: {
                 Text("Create Library")
@@ -230,6 +235,7 @@ struct CommunityView: View {
                     .background(Color.primary)
                     .clipShape(Capsule())
             }
+            .accessibilityLabel("Create a shared library")
         }
         .padding(.vertical, 48)
     }
@@ -277,6 +283,7 @@ struct CommunityPostCard: View {
                     Image(systemName: "eye.slash")
                         .font(.caption)
                         .foregroundStyle(.textTertiary)
+                        .accessibilityLabel("Anonymous post")
                 }
             }
 
@@ -300,7 +307,7 @@ struct CommunityPostCard: View {
                 }
                 .padding(8)
                 .background(Color.accent.opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusSmall))
             }
 
             // Shared highlight
@@ -329,6 +336,7 @@ struct CommunityPostCard: View {
                     let hasReacted = reaction?.hasReacted ?? false
 
                     Button {
+                        Theme.haptic(.light)
                         socialService.reactToPost(post.id, reaction: reactionType)
                     } label: {
                         HStack(spacing: 4) {
@@ -342,11 +350,13 @@ struct CommunityPostCard: View {
                     }
                     .buttonStyle(.plain)
                     .opacity(count > 0 || hasReacted ? 1 : 0.5)
+                    .accessibilityLabel("\(reactionType.rawValue) reaction, \(count) times")
                 }
 
                 Spacer()
 
                 Button {
+                    Theme.haptic(.light)
                     showingShareSheet = true
                 } label: {
                     Image(systemName: "square.and.arrow.up")
@@ -354,11 +364,12 @@ struct CommunityPostCard: View {
                         .foregroundStyle(.textTertiary)
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Share post")
             }
         }
         .padding(16)
         .background(Color.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
         .sheet(isPresented: $showingShareSheet) {
             SharePostSheet(post: post)
         }
@@ -393,7 +404,7 @@ struct ReadingCircleCard: View {
 
                     HStack(spacing: 4) {
                         Image(systemName: "person.2")
-                            .font(.caption2)
+                            .font(.caption)
                         Text("\(circle.memberCount) members")
                             .font(.caption)
                     }
@@ -426,7 +437,7 @@ struct ReadingCircleCard: View {
 
                     VStack(alignment: .leading, spacing: 2) {
                         Text("Currently Reading")
-                            .font(.caption2)
+                            .font(.caption)
                             .foregroundStyle(.textTertiary)
                         Text(currentBook)
                             .font(.caption)
@@ -438,10 +449,11 @@ struct ReadingCircleCard: View {
                 .padding(8)
                 .frame(maxWidth: .infinity, alignment: .leading)
                 .background(Color.accent.opacity(0.1))
-                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusSmall))
             }
 
             Button {
+                Theme.haptic(.medium)
                 if isJoined {
                     socialService.leaveReadingCircle(circle.id)
                 } else {
@@ -456,12 +468,13 @@ struct ReadingCircleCard: View {
                     .frame(maxWidth: .infinity)
                     .padding(.vertical, 8)
                     .background(isJoined ? Color.surfaceElevated : Color.primary)
-                    .clipShape(RoundedRectangle(cornerRadius: 8))
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusSmall))
             }
+            .accessibilityLabel(isJoined ? "Leave reading circle" : "Join reading circle")
         }
         .padding(16)
         .background(Color.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
     }
 }
 
@@ -489,7 +502,7 @@ struct SharedLibraryCard: View {
 
                     HStack(spacing: 4) {
                         Image(systemName: library.isPublic ? "globe" : "lock")
-                            .font(.caption2)
+                            .font(.caption)
                         Text(library.isPublic ? "Public" : "Private")
                             .font(.caption)
                     }
@@ -512,7 +525,7 @@ struct SharedLibraryCard: View {
             HStack(spacing: 8) {
                 HStack(spacing: 4) {
                     Image(systemName: "person.2")
-                        .font(.caption2)
+                        .font(.caption)
                     Text("\(library.memberCount) members")
                         .font(.caption)
                 }
@@ -522,7 +535,7 @@ struct SharedLibraryCard: View {
 
                 HStack(spacing: 4) {
                     Image(systemName: "person.badge.plus")
-                        .font(.caption2)
+                        .font(.caption)
                     Text("Collaborators")
                         .font(.caption)
                 }
@@ -531,6 +544,7 @@ struct SharedLibraryCard: View {
 
             HStack(spacing: 8) {
                 Button {
+                    Theme.haptic(.light)
                     showingArticlePicker = true
                 } label: {
                     Label("Add Article", systemImage: "plus")
@@ -541,8 +555,10 @@ struct SharedLibraryCard: View {
                         .background(Color.accent.opacity(0.1))
                         .clipShape(Capsule())
                 }
+                .accessibilityLabel("Add article to library")
 
                 Button {
+                    Theme.haptic(.warning)
                     socialService.deleteSharedLibrary(library.id)
                 } label: {
                     Label("Delete", systemImage: "trash")
@@ -553,11 +569,12 @@ struct SharedLibraryCard: View {
                         .background(Color.error.opacity(0.1))
                         .clipShape(Capsule())
                 }
+                .accessibilityLabel("Delete shared library")
             }
         }
         .padding(16)
         .background(Color.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
         .sheet(isPresented: $showingArticlePicker) {
             AddArticleToLibrarySheet(libraryId: library.id, socialService: socialService, viewModel: viewModel)
         }
@@ -584,7 +601,7 @@ struct NewPostSheet: View {
                         .font(.body)
                         .scrollContentBackground(.hidden)
                         .background(Color.surface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
                         .frame(minHeight: 120)
                         .padding(.horizontal, 16)
 
@@ -610,6 +627,7 @@ struct NewPostSheet: View {
                     Spacer()
 
                     Button {
+                        Theme.haptic(.success)
                         _ = socialService.createPost(
                             content: content,
                             articleId: selectedArticle?.id,
@@ -625,7 +643,7 @@ struct NewPostSheet: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
                             .background(content.isEmpty ? Color.ghost : Color.primary)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
                     }
                     .disabled(content.isEmpty)
                     .padding(.horizontal, 16)
@@ -636,7 +654,14 @@ struct NewPostSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button {
+                        Theme.haptic(.light)
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                    .foregroundColor(.textSecondary)
+                    .accessibilityLabel("Cancel and discard post")
                 }
             }
         }
@@ -671,7 +696,7 @@ struct SharePostSheet: View {
                     }
                     .padding(24)
                     .background(Color.surface)
-                    .clipShape(RoundedRectangle(cornerRadius: 16))
+                    .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
 
                     VStack(spacing: 12) {
                         Text("Privacy: \(privacyService.privacySettings.anonymizeBeforeSharing ? "Anonymized" : "Public")")
@@ -697,7 +722,14 @@ struct SharePostSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .confirmationAction) {
-                    Button("Done") { dismiss() }
+                    Button {
+                        Theme.haptic(.light)
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                    }
+                    .foregroundColor(.primary)
+                    .accessibilityLabel("Done sharing post")
                 }
             }
         }
@@ -724,7 +756,7 @@ struct NewLibrarySheet: View {
                         .font(.title3)
                         .padding(16)
                         .background(Color.surface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
 
                     Toggle("Make Public", isOn: $isPublic)
                         .padding(.horizontal, 16)
@@ -738,6 +770,7 @@ struct NewLibrarySheet: View {
                     Spacer()
 
                     Button {
+                        Theme.haptic(.success)
                         _ = socialService.createSharedLibrary(name: name, isPublic: isPublic)
                         dismiss()
                     } label: {
@@ -747,7 +780,7 @@ struct NewLibrarySheet: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
                             .background(name.isEmpty ? Color.ghost : Color.primary)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
                     }
                     .disabled(name.isEmpty)
                     .padding(.horizontal, 16)
@@ -759,7 +792,14 @@ struct NewLibrarySheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button {
+                        Theme.haptic(.light)
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                    .foregroundColor(.textSecondary)
+                    .accessibilityLabel("Cancel creating library")
                 }
             }
         }
@@ -791,6 +831,7 @@ struct AddArticleToLibrarySheet: View {
                 } else {
                     List(viewModel.articles) { article in
                         Button {
+                            Theme.haptic(.light)
                             socialService.addArticleToSharedLibrary(libraryId, articleId: article.id)
                             dismiss()
                         } label: {
@@ -811,6 +852,7 @@ struct AddArticleToLibrarySheet: View {
                             }
                         }
                         .listRowBackground(Color.surface)
+                        .accessibilityLabel("Add \(article.title) to library")
                     }
                     .listStyle(.plain)
                     .scrollContentBackground(.hidden)
@@ -820,7 +862,14 @@ struct AddArticleToLibrarySheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button {
+                        Theme.haptic(.light)
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                    .foregroundColor(.textSecondary)
+                    .accessibilityLabel("Cancel adding article")
                 }
             }
         }
@@ -846,19 +895,20 @@ struct NewCircleSheet: View {
                         .font(.title3)
                         .padding(16)
                         .background(Color.surface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
 
                     TextField("Description (optional)", text: $description)
                         .textFieldStyle(.plain)
                         .font(.body)
                         .padding(16)
                         .background(Color.surface)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
                         .frame(minHeight: 80)
 
                     Spacer()
 
                     Button {
+                        Theme.haptic(.success)
                         _ = socialService.createReadingCircle(name: name, description: description)
                         dismiss()
                     } label: {
@@ -868,7 +918,7 @@ struct NewCircleSheet: View {
                             .frame(maxWidth: .infinity)
                             .padding(.vertical, 16)
                             .background(name.isEmpty ? Color.ghost : Color.primary)
-                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusMedium))
                     }
                     .disabled(name.isEmpty)
                     .padding(.horizontal, 16)
@@ -880,7 +930,14 @@ struct NewCircleSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Cancel") { dismiss() }
+                    Button {
+                        Theme.haptic(.light)
+                        dismiss()
+                    } label: {
+                        Text("Cancel")
+                    }
+                    .foregroundColor(.textSecondary)
+                    .accessibilityLabel("Cancel creating circle")
                 }
             }
         }

@@ -26,6 +26,7 @@ struct SmartCollectionsView: View {
         .toolbar {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
+                    Theme.haptic(.light)
                     Task { await refreshTopics() }
                 } label: {
                     Image(systemName: "arrow.clockwise")
@@ -68,6 +69,7 @@ struct SmartCollectionsView: View {
                 // Topic cards
                 ForEach(topics) { topic in
                     TopicCard(topic: topic) {
+                        Theme.haptic(.light)
                         selectedTopic = topic
                     }
                 }
@@ -111,7 +113,7 @@ struct SmartCollectionsView: View {
         }
         .padding(16)
         .background(Color.surfaceElevated.opacity(0.5))
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
     }
 
     private func refreshTopics() async {
@@ -133,7 +135,9 @@ struct TopicCard: View {
     let onTap: () -> Void
 
     var body: some View {
-        Button(action: onTap) {
+        Button {
+            onTap()
+        } label: {
             VStack(alignment: .leading, spacing: 12) {
                 HStack {
                     VStack(alignment: .leading, spacing: 4) {
@@ -157,7 +161,7 @@ struct TopicCard: View {
                     HStack(spacing: 6) {
                         ForEach(topic.keywords.prefix(4), id: \.self) { keyword in
                             Text(keyword)
-                                .font(.caption2)
+                                .font(.caption)
                                 .foregroundColor(.primary)
                                 .padding(.horizontal, 8)
                                 .padding(.vertical, 3)
@@ -167,7 +171,7 @@ struct TopicCard: View {
 
                         if topic.keywords.count > 4 {
                             Text("+\(topic.keywords.count - 4)")
-                                .font(.caption2)
+                                .font(.caption)
                                 .foregroundColor(.textTertiary)
                         }
                     }
@@ -181,7 +185,7 @@ struct TopicCard: View {
                             .frame(width: 28, height: 28)
                             .overlay {
                                 Text(String(article.domain.prefix(1)).uppercased())
-                                    .font(.caption2)
+                                    .font(.caption)
                                     .fontWeight(.semibold)
                                     .foregroundColor(.textSecondary)
                             }
@@ -193,7 +197,7 @@ struct TopicCard: View {
 
                     if topic.articles.count > 3 {
                         Text("+\(topic.articles.count - 3)")
-                            .font(.caption2)
+                            .font(.caption)
                             .foregroundColor(.textTertiary)
                             .padding(.leading, 12)
                     }
@@ -203,7 +207,7 @@ struct TopicCard: View {
             }
             .padding(16)
             .background(Color.surface)
-            .clipShape(RoundedRectangle(cornerRadius: 16))
+            .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
         }
         .buttonStyle(.plain)
         .accessibilityLabel("\(topic.name) topic with \(topic.articles.count) articles")
@@ -256,23 +260,26 @@ struct TopicDetailSheet: View {
                         .frame(maxWidth: .infinity, alignment: .leading)
                         .padding(16)
                         .background(Color.surface)
-                        .clipShape(RoundedRectangle(cornerRadius: 16))
+                        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
 
                         // Articles
                         ForEach(topic.articles) { article in
                             ArticleCard(article: article)
                                 .onTapGesture {
+                                    Theme.haptic(.light)
                                     dismiss()
                                     onArticleTap(article)
                                 }
                                 .contextMenu {
                                     Button {
+                                        Theme.haptic(.success)
                                         Task { await viewModel.archiveArticle(article) }
                                     } label: {
                                         Label("Archive", systemImage: "archivebox")
                                     }
 
                                     Button {
+                                        Theme.haptic(.light)
                                         Task { await viewModel.markAsRead(article) }
                                     } label: {
                                         Label("Mark as read", systemImage: "checkmark")
@@ -281,6 +288,7 @@ struct TopicDetailSheet: View {
                                     Divider()
 
                                     Button(role: .destructive) {
+                                        Theme.haptic(.warning)
                                         Task { await viewModel.deleteArticle(article) }
                                     } label: {
                                         Label("Delete", systemImage: "trash")
@@ -296,8 +304,14 @@ struct TopicDetailSheet: View {
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
                 ToolbarItem(placement: .topBarTrailing) {
-                    Button("Done") { dismiss() }
-                        .foregroundColor(.primary)
+                    Button {
+                        Theme.haptic(.light)
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                    }
+                    .foregroundColor(.primary)
+                    .accessibilityLabel("Done with topic")
                 }
             }
         }

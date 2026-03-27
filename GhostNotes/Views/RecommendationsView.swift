@@ -78,6 +78,7 @@ struct RecommendationsView: View {
                     Spacer()
 
                     Button {
+                        Theme.haptic(.light)
                         Task { await loadRecommendations() }
                     } label: {
                         Image(systemName: "arrow.clockwise")
@@ -92,6 +93,7 @@ struct RecommendationsView: View {
                     RecommendationCard(
                         recommendation: recommendation,
                         onRead: {
+                            Theme.haptic(.light)
                             selectedArticle = recommendation.article
                         }
                     )
@@ -140,7 +142,7 @@ struct RecommendationCard: View {
 
                         // Reason badge
                         Text(recommendation.reason)
-                            .font(.caption2)
+                            .font(.caption)
                             .foregroundColor(.textSecondary)
                             .padding(.horizontal, 6)
                             .padding(.vertical, 2)
@@ -163,7 +165,7 @@ struct RecommendationCard: View {
                         .foregroundColor(.primary)
 
                     Text("\(Int(recommendation.score * 10))%")
-                        .font(.caption2)
+                        .font(.caption)
                         .foregroundColor(.textTertiary)
                 }
             }
@@ -205,7 +207,7 @@ struct RecommendationCard: View {
         }
         .padding(16)
         .background(Color.surface)
-        .clipShape(RoundedRectangle(cornerRadius: 16))
+        .clipShape(RoundedRectangle(cornerRadius: Theme.cornerRadiusLarge))
     }
 }
 
