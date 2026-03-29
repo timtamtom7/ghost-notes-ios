@@ -1,7 +1,7 @@
 import Foundation
 
 /// A highlighted passage within an article
-struct Highlight: Identifiable, Codable, Equatable {
+struct Highlight: Identifiable, Codable, Equatable, Hashable {
     let id: UUID
     let articleId: UUID
     var text: String
