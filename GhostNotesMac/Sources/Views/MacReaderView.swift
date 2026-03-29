@@ -56,6 +56,7 @@ struct MacReaderView: View {
                         .clipShape(Circle())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Decrease font size")
 
                 Text("\(Int(fontSize))")
                     .font(.caption.monospacedDigit())
@@ -73,6 +74,7 @@ struct MacReaderView: View {
                         .clipShape(Circle())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Increase font size")
 
                 Divider()
                     .frame(height: 20)
@@ -89,6 +91,8 @@ struct MacReaderView: View {
                         .clipShape(Circle())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Toggle serif font")
+                .accessibilityHint("Switch between serif and sans-serif font")
             }
 
             Spacer()
@@ -107,6 +111,8 @@ struct MacReaderView: View {
                         .clipShape(Capsule())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("AI Summary")
+                .accessibilityHint("View AI-generated highlights and summary")
 
                 if !article.isRead {
                     Button {
@@ -121,6 +127,8 @@ struct MacReaderView: View {
                             .clipShape(Capsule())
                     }
                     .buttonStyle(.plain)
+                    .accessibilityLabel("Mark as read")
+                    .accessibilityHint("Mark this article as read")
                 }
 
                 Button {
@@ -134,6 +142,8 @@ struct MacReaderView: View {
                         .clipShape(Circle())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Archive article")
+                .accessibilityHint("Archive this article")
             }
         }
         .padding(.horizontal, 20)

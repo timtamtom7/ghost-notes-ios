@@ -29,6 +29,8 @@ struct MacLibraryView: View {
                         .clipShape(Circle())
                 }
                 .buttonStyle(.plain)
+                .accessibilityLabel("Add article")
+                .accessibilityHint("Save a new article by URL")
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 12)
@@ -92,6 +94,8 @@ struct MacLibraryView: View {
                 .clipShape(RoundedRectangle(cornerRadius: MacTheme.cornerRadiusSmall))
         }
         .buttonStyle(.plain)
+        .accessibilityLabel("\(filter.rawValue) filter")
+        .accessibilityHint("Show \(filter.rawValue.lowercased()) articles")
     }
 
     private func sidebarArticleRow(_ article: Article) -> some View {
