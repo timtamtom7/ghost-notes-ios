@@ -49,3 +49,36 @@ targets:
         CODE_SIGN_STYLE: Automatic
         DEVELOPMENT_TEAM: ""
         SKIP_INSTALL: YES
+
+  GhostNotesMac:
+    type: application
+    platform: macOS
+    sources:
+      - path: GhostNotesMac
+        type: group
+      - path: GhostNotes/Models
+        type: group
+      - path: GhostNotes/Services/DatabaseService.swift
+        type: file
+      - path: GhostNotes/Services/ArticleService.swift
+        type: file
+      - path: GhostNotes/Services/GhostNotesR11Service.swift
+        type: file
+      - path: GhostNotes/Services/GhostNotesR12Service.swift
+        type: file
+      - path: GhostNotes/Services/RecommendationService.swift
+        type: file
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.tomalabs.ghostnotesmac
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: "1"
+        CODE_SIGN_STYLE: Automatic
+        DEVELOPMENT_TEAM: ""
+        GENERATE_INFOPLIST_FILE: YES
+        INFOPLIST_KEY_NSMainNibFile: ""
+        INFOPLIST_KEY_NSPrincipalClass: NSApplication
+        MACOSX_DEPLOYMENT_TARGET: "15.0"
+        SWIFT_VERSION: "6.0"
+        ENABLE_HARDENED_RUNTIME: YES
+        CODE_SIGN_IDENTITY: "-"
