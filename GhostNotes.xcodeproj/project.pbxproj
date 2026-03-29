@@ -18,6 +18,7 @@
 		3DF122BE01275C4A203CD068 /* CollectionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE2D7EC36EEDE0F6C7F32B5F /* CollectionsView.swift */; };
 		50995D52012AB9F7DB01548E /* ReadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE346ED13A57FE3247699FE /* ReadingView.swift */; };
 		586E352E06CE5F939E8D2A05 /* ArchiveView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBFAECAFFAAE5F5A8F92131C /* ArchiveView.swift */; };
+		5E3DECE72E93D4D1D5E980DA /* ReadingQueueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77621D9FF02BC9E8D3336F8 /* ReadingQueueService.swift */; };
 		6D03CF42099566CC0BF11930 /* RecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB8C71201DF801A78E3753C /* RecommendationService.swift */; };
 		728E60F80C98DE52A723EB0E /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = D05633B1F276C97EA9E83E67 /* PrivacyInfo.xcprivacy */; };
 		7723557E1F6778272D0DCA78 /* GhostNotesR12Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464CEF47D1C5D30F04438380 /* GhostNotesR12Service.swift */; };
@@ -55,6 +56,7 @@
 		79F9DF829F88E1AEFF2E9142 /* SmartCollectionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmartCollectionsView.swift; sourceTree = "<group>"; };
 		8F247C692340C42CD8346D79 /* ArticleCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleCard.swift; sourceTree = "<group>"; };
 		9B635319616959E36FB9086C /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+		A77621D9FF02BC9E8D3336F8 /* ReadingQueueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingQueueService.swift; sourceTree = "<group>"; };
 		AAE0FCD6B716A7F38BA74E5C /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		B0C6B5D42F3564378B7A4B59 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
 		BB39DC194DF1F5BC1ABD7392 /* RecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationsView.swift; sourceTree = "<group>"; };
@@ -77,6 +79,7 @@
 				78B67E0488A4168F83E890D0 /* DatabaseService.swift */,
 				6C5D920B26D1A5C49578D1EF /* GhostNotesR11Service.swift */,
 				464CEF47D1C5D30F04438380 /* GhostNotesR12Service.swift */,
+				A77621D9FF02BC9E8D3336F8 /* ReadingQueueService.swift */,
 				CFB8C71201DF801A78E3753C /* RecommendationService.swift */,
 				D713F54752068692C04DF525 /* ShareService.swift */,
 				55B5806A721FC9BFA51D7F7E /* SubscriptionService.swift */,
@@ -290,6 +293,7 @@
 				84CC276648F5186CAC0371F2 /* HighlightsView.swift in Sources */,
 				7B0B9BFA4AB62F4752F4CE1B /* LibraryView.swift in Sources */,
 				30F8FD7688FFA7568BFC1BA3 /* LibraryViewModel.swift in Sources */,
+				5E3DECE72E93D4D1D5E980DA /* ReadingQueueService.swift in Sources */,
 				50995D52012AB9F7DB01548E /* ReadingView.swift in Sources */,
 				939B71C505B1B064D111F48D /* ReadingViewModel.swift in Sources */,
 				6D03CF42099566CC0BF11930 /* RecommendationService.swift in Sources */,

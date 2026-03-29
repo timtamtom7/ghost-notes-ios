@@ -10,6 +10,7 @@
 		02B2539BEC1F76FF5BCB06A4 /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361143037846761EAB851F4D /* ShareService.swift */; };
 		0A1148158A42A2839378A1BB /* GhostNotesR11Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A80AD0BED6844B97476D3 /* GhostNotesR11Service.swift */; };
 		107A943EBD4CA2E168600AF4 /* MacLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0949E3DFEFBA6E11D1FD1 /* MacLibraryViewModel.swift */; };
+		1AC3E822323236FF2DB66520 /* ReadingQueueService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 589D42992F029A655D3F09F1 /* ReadingQueueService.swift */; };
 		1DA791847FB90EFA975EB3F1 /* MacContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF35922726E5BAFE742F43D /* MacContentView.swift */; };
 		1E2C00762DEE4BB88C215CCB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E10792AB1D4D5407495147 /* AppKit.framework */; };
 		275A23C063A086F2BDA22126 /* GhostNotesMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C9E959AB0C8D1A1F07CBD4 /* GhostNotesMacApp.swift */; };
@@ -20,9 +21,11 @@
 		4E96D75D52C3967BBE3127E0 /* MacAIHighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51155EC4BBC0C4ACFD1D980A /* MacAIHighlightsView.swift */; };
 		4FAF04A5F27072BA9D4398BF /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BA3E191C9E92EC126E8689 /* ArticleService.swift */; };
 		56B65282FABDDCD8D6B5FADE /* RecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FFEEF628ADE29BC61BBC80 /* RecommendationService.swift */; };
+		5A6EA059BC80530924966E6D /* MacSharedQueuesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A70386D1AD18F5E2B054795 /* MacSharedQueuesView.swift */; };
 		5B4721B9D04C93B198D8C168 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8195AC5F125A3C9367D19A56 /* SubscriptionService.swift */; };
 		5BEA642C8C82698CD5A98F5F /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D1434700B8996740BD0C47 /* Highlight.swift */; };
 		755D7486F9CC7F9BCAE9B5EF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC03D261C10EA1E62616289 /* SwiftUI.framework */; };
+		85A4D87C575907DFD2F1A3AE /* MacRecommendationsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5624EB18F11FE5DEB31A4 /* MacRecommendationsView.swift */; };
 		91C87725BE4E92483E8140F4 /* MacTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C457428D71A2DBFEF048C2 /* MacTheme.swift */; };
 		E930568437641BBFBCA61F41 /* MacArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F39B398C5B0241050CA4B7 /* MacArticleListView.swift */; };
 		E934EDDB901D30424DB056C3 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC5E2630DD76DEAC7441FEC /* Article.swift */; };
@@ -35,15 +38,18 @@
 		179C684BC0E4B8BFFE25E33E /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
 		27FFEEF628ADE29BC61BBC80 /* RecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationService.swift; sourceTree = "<group>"; };
 		28E10792AB1D4D5407495147 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		2A70386D1AD18F5E2B054795 /* MacSharedQueuesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSharedQueuesView.swift; sourceTree = "<group>"; };
 		361143037846761EAB851F4D /* ShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
 		48A1B85A391AAB319B677C6E /* GhostNotesR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesR12Service.swift; sourceTree = "<group>"; };
 		51155EC4BBC0C4ACFD1D980A /* MacAIHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAIHighlightsView.swift; sourceTree = "<group>"; };
 		53C9E959AB0C8D1A1F07CBD4 /* GhostNotesMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesMacApp.swift; sourceTree = "<group>"; };
+		589D42992F029A655D3F09F1 /* ReadingQueueService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingQueueService.swift; sourceTree = "<group>"; };
 		6CC03D261C10EA1E62616289 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		7AF35922726E5BAFE742F43D /* MacContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacContentView.swift; sourceTree = "<group>"; };
 		8195AC5F125A3C9367D19A56 /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		95E0949E3DFEFBA6E11D1FD1 /* MacLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacLibraryViewModel.swift; sourceTree = "<group>"; };
 		A43A80AD0BED6844B97476D3 /* GhostNotesR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesR11Service.swift; sourceTree = "<group>"; };
+		C2B5624EB18F11FE5DEB31A4 /* MacRecommendationsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacRecommendationsView.swift; sourceTree = "<group>"; };
 		C6BA3E191C9E92EC126E8689 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
 		C9D1434700B8996740BD0C47 /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
 		D41E6918626770F1FF843403 /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
@@ -99,7 +105,9 @@
 				7AF35922726E5BAFE742F43D /* MacContentView.swift */,
 				0965CB559FC47B8FB9923CE7 /* MacLibraryView.swift */,
 				D7CBFBA828F0D9CBEDCD1341 /* MacReaderView.swift */,
+				C2B5624EB18F11FE5DEB31A4 /* MacRecommendationsView.swift */,
 				D41E6918626770F1FF843403 /* MacSettingsView.swift */,
+				2A70386D1AD18F5E2B054795 /* MacSharedQueuesView.swift */,
 				7715C8C65DCA107DC3FB8FC1 /* Components */,
 			);
 			path = Views;
@@ -183,6 +191,7 @@
 				179C684BC0E4B8BFFE25E33E /* DatabaseService.swift */,
 				A43A80AD0BED6844B97476D3 /* GhostNotesR11Service.swift */,
 				48A1B85A391AAB319B677C6E /* GhostNotesR12Service.swift */,
+				589D42992F029A655D3F09F1 /* ReadingQueueService.swift */,
 				27FFEEF628ADE29BC61BBC80 /* RecommendationService.swift */,
 				361143037846761EAB851F4D /* ShareService.swift */,
 				8195AC5F125A3C9367D19A56 /* SubscriptionService.swift */,
@@ -256,8 +265,11 @@
 				F46C41F6D8BCCAC8C2976133 /* MacLibraryView.swift in Sources */,
 				107A943EBD4CA2E168600AF4 /* MacLibraryViewModel.swift in Sources */,
 				4B93F28EA4F74714D93D0914 /* MacReaderView.swift in Sources */,
+				85A4D87C575907DFD2F1A3AE /* MacRecommendationsView.swift in Sources */,
 				45E9A38ABC95662A9A672089 /* MacSettingsView.swift in Sources */,
+				5A6EA059BC80530924966E6D /* MacSharedQueuesView.swift in Sources */,
 				91C87725BE4E92483E8140F4 /* MacTheme.swift in Sources */,
+				1AC3E822323236FF2DB66520 /* ReadingQueueService.swift in Sources */,
 				56B65282FABDDCD8D6B5FADE /* RecommendationService.swift in Sources */,
 				02B2539BEC1F76FF5BCB06A4 /* ShareService.swift in Sources */,
 				5B4721B9D04C93B198D8C168 /* SubscriptionService.swift in Sources */,
