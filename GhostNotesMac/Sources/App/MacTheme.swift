@@ -1,0 +1,47 @@
+import SwiftUI
+import AppKit
+
+// MARK: - Mac Theme (mirrors iOS GhostNotes theme)
+
+extension Color {
+    static let macBackground = Color(hex: "0A0A0F")
+    static let macSurface = Color(hex: "16161F")
+    static let macSurfaceElevated = Color(hex: "1E1E2A")
+    static let macPrimary = Color(hex: "7B6CF6")
+    static let macAccent = Color(hex: "F0E6FF")
+    static let macTextPrimary = Color(hex: "F5F5F7")
+    static let macTextSecondary = Color(hex: "8E8E93")
+    static let macTextTertiary = Color(hex: "48484A")
+    static let macSeparator = Color(hex: "2C2C34")
+    static let macGhost = Color(hex: "3D3D50")
+    static let macSuccess = Color(hex: "34C759")
+    static let macError = Color(hex: "FF453A")
+}
+
+enum MacTheme {
+    static let cornerRadiusSmall: CGFloat = 8
+    static let cornerRadiusMedium: CGFloat = 12
+    static let cornerRadiusLarge: CGFloat = 16
+    static let spacing4: CGFloat = 4
+    static let spacing8: CGFloat = 8
+    static let spacing12: CGFloat = 12
+    static let spacing16: CGFloat = 16
+    static let spacing24: CGFloat = 24
+    static let spacing32: CGFloat = 32
+}
+
+extension Color {
+    init(hex: String) {
+        let hex = hex.trimmingCharacters(in: CharacterSet.alphanumerics.inverted)
+        var int: UInt64 = 0
+        Scanner(string: hex).scanHexInt64(&int)
+        let a, r, g, b: UInt64
+        switch hex.count {
+        case 3: (a, r, g, b) = (255, (int >> 8) * 17, (int >> 4 & 0xF) * 17, (int & 0xF) * 17)
+        case 6: (a, r, g, b) = (255, int >> 16, int >> 8 & 0xFF, int & 0xFF)
+        case 8: (a, r, g, b) = (int >> 24, int >> 16 & 0xFF, int >> 8 & 0xFF, int & 0xFF)
+        default: (a, r, g, b) = (255, 0, 0, 0)
+        }
+        self.init(.sRGB, red: Double(r) / 255, green: Double(g) / 255, blue: Double(b) / 255, opacity: Double(a) / 255)
+    }
+}

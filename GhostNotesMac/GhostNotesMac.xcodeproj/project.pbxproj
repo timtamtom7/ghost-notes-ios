@@ -1,0 +1,465 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		02B2539BEC1F76FF5BCB06A4 /* ShareService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 361143037846761EAB851F4D /* ShareService.swift */; };
+		0A1148158A42A2839378A1BB /* GhostNotesR11Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = A43A80AD0BED6844B97476D3 /* GhostNotesR11Service.swift */; };
+		107A943EBD4CA2E168600AF4 /* MacLibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95E0949E3DFEFBA6E11D1FD1 /* MacLibraryViewModel.swift */; };
+		1DA791847FB90EFA975EB3F1 /* MacContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AF35922726E5BAFE742F43D /* MacContentView.swift */; };
+		1E2C00762DEE4BB88C215CCB /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 28E10792AB1D4D5407495147 /* AppKit.framework */; };
+		275A23C063A086F2BDA22126 /* GhostNotesMacApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53C9E959AB0C8D1A1F07CBD4 /* GhostNotesMacApp.swift */; };
+		3AC1EB3A77BA0A9A9C67AE34 /* GhostNotesR12Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A1B85A391AAB319B677C6E /* GhostNotesR12Service.swift */; };
+		3BC26F69DBAC7B14E4F81F96 /* DatabaseService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 179C684BC0E4B8BFFE25E33E /* DatabaseService.swift */; };
+		45E9A38ABC95662A9A672089 /* MacSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D41E6918626770F1FF843403 /* MacSettingsView.swift */; };
+		4B93F28EA4F74714D93D0914 /* MacReaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7CBFBA828F0D9CBEDCD1341 /* MacReaderView.swift */; };
+		4E96D75D52C3967BBE3127E0 /* MacAIHighlightsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 51155EC4BBC0C4ACFD1D980A /* MacAIHighlightsView.swift */; };
+		4FAF04A5F27072BA9D4398BF /* ArticleService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C6BA3E191C9E92EC126E8689 /* ArticleService.swift */; };
+		56B65282FABDDCD8D6B5FADE /* RecommendationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FFEEF628ADE29BC61BBC80 /* RecommendationService.swift */; };
+		5B4721B9D04C93B198D8C168 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8195AC5F125A3C9367D19A56 /* SubscriptionService.swift */; };
+		5BEA642C8C82698CD5A98F5F /* Highlight.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9D1434700B8996740BD0C47 /* Highlight.swift */; };
+		755D7486F9CC7F9BCAE9B5EF /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CC03D261C10EA1E62616289 /* SwiftUI.framework */; };
+		91C87725BE4E92483E8140F4 /* MacTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06C457428D71A2DBFEF048C2 /* MacTheme.swift */; };
+		E930568437641BBFBCA61F41 /* MacArticleListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5F39B398C5B0241050CA4B7 /* MacArticleListView.swift */; };
+		E934EDDB901D30424DB056C3 /* Article.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFC5E2630DD76DEAC7441FEC /* Article.swift */; };
+		F46C41F6D8BCCAC8C2976133 /* MacLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0965CB559FC47B8FB9923CE7 /* MacLibraryView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		06C457428D71A2DBFEF048C2 /* MacTheme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacTheme.swift; sourceTree = "<group>"; };
+		0965CB559FC47B8FB9923CE7 /* MacLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacLibraryView.swift; sourceTree = "<group>"; };
+		179C684BC0E4B8BFFE25E33E /* DatabaseService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseService.swift; sourceTree = "<group>"; };
+		27FFEEF628ADE29BC61BBC80 /* RecommendationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecommendationService.swift; sourceTree = "<group>"; };
+		28E10792AB1D4D5407495147 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		361143037846761EAB851F4D /* ShareService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareService.swift; sourceTree = "<group>"; };
+		48A1B85A391AAB319B677C6E /* GhostNotesR12Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesR12Service.swift; sourceTree = "<group>"; };
+		51155EC4BBC0C4ACFD1D980A /* MacAIHighlightsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacAIHighlightsView.swift; sourceTree = "<group>"; };
+		53C9E959AB0C8D1A1F07CBD4 /* GhostNotesMacApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesMacApp.swift; sourceTree = "<group>"; };
+		6CC03D261C10EA1E62616289 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		7AF35922726E5BAFE742F43D /* MacContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacContentView.swift; sourceTree = "<group>"; };
+		8195AC5F125A3C9367D19A56 /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
+		95E0949E3DFEFBA6E11D1FD1 /* MacLibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacLibraryViewModel.swift; sourceTree = "<group>"; };
+		A43A80AD0BED6844B97476D3 /* GhostNotesR11Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GhostNotesR11Service.swift; sourceTree = "<group>"; };
+		C6BA3E191C9E92EC126E8689 /* ArticleService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleService.swift; sourceTree = "<group>"; };
+		C9D1434700B8996740BD0C47 /* Highlight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Highlight.swift; sourceTree = "<group>"; };
+		D41E6918626770F1FF843403 /* MacSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacSettingsView.swift; sourceTree = "<group>"; };
+		D5F39B398C5B0241050CA4B7 /* MacArticleListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacArticleListView.swift; sourceTree = "<group>"; };
+		D7CBFBA828F0D9CBEDCD1341 /* MacReaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacReaderView.swift; sourceTree = "<group>"; };
+		F66EE57D213D6EF06822B22F /* GhostNotesMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GhostNotesMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFC5E2630DD76DEAC7441FEC /* Article.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Article.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2FCF7A9B4CCC1D71ACFDA48B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				755D7486F9CC7F9BCAE9B5EF /* SwiftUI.framework in Frameworks */,
+				1E2C00762DEE4BB88C215CCB /* AppKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10D3236A5FC798BB69765CCA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				F4BE967E3620047507822122 /* Services */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+		2B5BEEBF302A6DCFD053C789 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				28E10792AB1D4D5407495147 /* AppKit.framework */,
+				6CC03D261C10EA1E62616289 /* SwiftUI.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3B0823C1C74FBC6361F0BDA4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F66EE57D213D6EF06822B22F /* GhostNotesMac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5762E5E1163F6F16D8740B17 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				51155EC4BBC0C4ACFD1D980A /* MacAIHighlightsView.swift */,
+				D5F39B398C5B0241050CA4B7 /* MacArticleListView.swift */,
+				7AF35922726E5BAFE742F43D /* MacContentView.swift */,
+				0965CB559FC47B8FB9923CE7 /* MacLibraryView.swift */,
+				D7CBFBA828F0D9CBEDCD1341 /* MacReaderView.swift */,
+				D41E6918626770F1FF843403 /* MacSettingsView.swift */,
+				7715C8C65DCA107DC3FB8FC1 /* Components */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		658F901FF579AA20E78AF800 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				95E0949E3DFEFBA6E11D1FD1 /* MacLibraryViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		7715C8C65DCA107DC3FB8FC1 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		7B00E6C09B85CA676EA3FF27 = {
+			isa = PBXGroup;
+			children = (
+				8E0B7D0686B8B0316DD78DFF /* GhostNotes */,
+				89894C7C43A4CEF0A3FD219E /* Sources */,
+				2B5BEEBF302A6DCFD053C789 /* Frameworks */,
+				3B0823C1C74FBC6361F0BDA4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		88C660ADF63E332AA9A602CB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				FFC5E2630DD76DEAC7441FEC /* Article.swift */,
+				C9D1434700B8996740BD0C47 /* Highlight.swift */,
+			);
+			name = Models;
+			path = ../GhostNotes/Models;
+			sourceTree = "<group>";
+		};
+		89894C7C43A4CEF0A3FD219E /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				BF47541DB4DB41BE040761CF /* App */,
+				658F901FF579AA20E78AF800 /* ViewModels */,
+				5762E5E1163F6F16D8740B17 /* Views */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		8E0B7D0686B8B0316DD78DFF /* GhostNotes */ = {
+			isa = PBXGroup;
+			children = (
+				C5D6EDF5AC67CC45E9E15565 /* Models */,
+				10D3236A5FC798BB69765CCA /* Services */,
+			);
+			name = GhostNotes;
+			sourceTree = "<group>";
+		};
+		BF47541DB4DB41BE040761CF /* App */ = {
+			isa = PBXGroup;
+			children = (
+				53C9E959AB0C8D1A1F07CBD4 /* GhostNotesMacApp.swift */,
+				06C457428D71A2DBFEF048C2 /* MacTheme.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		C5D6EDF5AC67CC45E9E15565 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				88C660ADF63E332AA9A602CB /* Models */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		F4BE967E3620047507822122 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				C6BA3E191C9E92EC126E8689 /* ArticleService.swift */,
+				179C684BC0E4B8BFFE25E33E /* DatabaseService.swift */,
+				A43A80AD0BED6844B97476D3 /* GhostNotesR11Service.swift */,
+				48A1B85A391AAB319B677C6E /* GhostNotesR12Service.swift */,
+				27FFEEF628ADE29BC61BBC80 /* RecommendationService.swift */,
+				361143037846761EAB851F4D /* ShareService.swift */,
+				8195AC5F125A3C9367D19A56 /* SubscriptionService.swift */,
+			);
+			name = Services;
+			path = ../GhostNotes/Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		040B7901997048C465C718F6 /* GhostNotesMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E92676CD4F512AF69DCDBA31 /* Build configuration list for PBXNativeTarget "GhostNotesMac" */;
+			buildPhases = (
+				03E3656EE1993AE4181C3FA0 /* Sources */,
+				2FCF7A9B4CCC1D71ACFDA48B /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GhostNotesMac;
+			productName = GhostNotesMac;
+			productReference = F66EE57D213D6EF06822B22F /* GhostNotesMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8998B39F56A624D39C953CE5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+				};
+			};
+			buildConfigurationList = C97DDE48609D3462B9F96455 /* Build configuration list for PBXProject "GhostNotesMac" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 7B00E6C09B85CA676EA3FF27;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				040B7901997048C465C718F6 /* GhostNotesMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		03E3656EE1993AE4181C3FA0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E934EDDB901D30424DB056C3 /* Article.swift in Sources */,
+				4FAF04A5F27072BA9D4398BF /* ArticleService.swift in Sources */,
+				3BC26F69DBAC7B14E4F81F96 /* DatabaseService.swift in Sources */,
+				275A23C063A086F2BDA22126 /* GhostNotesMacApp.swift in Sources */,
+				0A1148158A42A2839378A1BB /* GhostNotesR11Service.swift in Sources */,
+				3AC1EB3A77BA0A9A9C67AE34 /* GhostNotesR12Service.swift in Sources */,
+				5BEA642C8C82698CD5A98F5F /* Highlight.swift in Sources */,
+				4E96D75D52C3967BBE3127E0 /* MacAIHighlightsView.swift in Sources */,
+				E930568437641BBFBCA61F41 /* MacArticleListView.swift in Sources */,
+				1DA791847FB90EFA975EB3F1 /* MacContentView.swift in Sources */,
+				F46C41F6D8BCCAC8C2976133 /* MacLibraryView.swift in Sources */,
+				107A943EBD4CA2E168600AF4 /* MacLibraryViewModel.swift in Sources */,
+				4B93F28EA4F74714D93D0914 /* MacReaderView.swift in Sources */,
+				45E9A38ABC95662A9A672089 /* MacSettingsView.swift in Sources */,
+				91C87725BE4E92483E8140F4 /* MacTheme.swift in Sources */,
+				56B65282FABDDCD8D6B5FADE /* RecommendationService.swift in Sources */,
+				02B2539BEC1F76FF5BCB06A4 /* ShareService.swift in Sources */,
+				5B4721B9D04C93B198D8C168 /* SubscriptionService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		13AC3A5EB50C820A510070DB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		7859759C93F8BD8DA717CCAF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		7F76B32F5B81BAF7738794EA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ghost Notes";
+				INFOPLIST_KEY_LSUIElement = NO;
+				INFOPLIST_KEY_NSMainNibFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ghostnotes.macos;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Release;
+		};
+		B5CB4DC1ECD6296F79525C9D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Ghost Notes";
+				INFOPLIST_KEY_LSUIElement = NO;
+				INFOPLIST_KEY_NSMainNibFile = "";
+				INFOPLIST_KEY_NSPrincipalClass = NSApplication;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 15.0;
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ghostnotes.macos;
+				SDKROOT = macosx;
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		C97DDE48609D3462B9F96455 /* Build configuration list for PBXProject "GhostNotesMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7859759C93F8BD8DA717CCAF /* Debug */,
+				13AC3A5EB50C820A510070DB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E92676CD4F512AF69DCDBA31 /* Build configuration list for PBXNativeTarget "GhostNotesMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5CB4DC1ECD6296F79525C9D /* Debug */,
+				7F76B32F5B81BAF7738794EA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8998B39F56A624D39C953CE5 /* Project object */;
+}
