@@ -9,7 +9,7 @@ struct ShareService {
             return nil
         }
         
-        let service = ArticleService.shared
+        let service = await ArticleService.shared
         return await service.processURL(url.absoluteString)
     }
 }
