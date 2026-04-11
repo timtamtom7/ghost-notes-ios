@@ -67,7 +67,7 @@ class LibraryViewModel {
         
         let content = UNMutableNotificationContent()
         content.title = "Your reading list is waiting"
-        content.body = "You have \(articles.count) unread articles. Perfect time for a deep dive."
+        content.body = "You have unread articles waiting. Perfect time for a deep dive."
         content.sound = .default
         
         // Schedule for 3 days from now

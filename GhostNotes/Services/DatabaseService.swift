@@ -7,10 +7,15 @@ final class DatabaseService: @unchecked Sendable {
     private let collectionsKey = "ghost_notes_collections"
     private let sharedArticlesKey = "shared_articles"  // R5: App Group shared articles from share extension
     private let importedIdsKey = "imported_shared_article_ids"  // Track already-imported share extension articles
+    private let appGroupIdentifier = "group.com.tomalabs.ghostnotes"
 
     // R5: Use App Group UserDefaults so share extension and main app share storage
     private var userDefaults: UserDefaults {
-        UserDefaults(suiteName: "group.com.tomalabs.ghostnotes") ?? UserDefaults.standard
+        guard let defaults = UserDefaults(suiteName: appGroupIdentifier) else {
+            assertionFailure("App Group '\(appGroupIdentifier)' not configured. Check entitlements and Info.plist.")
+            return UserDefaults.standard
+        }
+        return defaults
     }
 
     private init() {
@@ -20,7 +25,7 @@ final class DatabaseService: @unchecked Sendable {
 
     // MARK: - R5: Share Extension Sync
     private func importSharedArticles() {
-        guard let sharedDefaults = UserDefaults(suiteName: "group.com.tomalabs.ghostnotes"),
+        guard let sharedDefaults = UserDefaults(suiteName: appGroupIdentifier),
               let data = sharedDefaults.data(forKey: sharedArticlesKey),
               let sharedArticles = try? JSONSerialization.jsonObject(with: data) as? [[String: Any]] else {
             return

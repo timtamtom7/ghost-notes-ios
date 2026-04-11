@@ -1,7 +1,8 @@
 import Foundation
 import NaturalLanguage
 
-final class ArticleService: @unchecked Sendable {
+@MainActor
+final class ArticleService: Sendable {
     static let shared = ArticleService()
     
     private init() {}

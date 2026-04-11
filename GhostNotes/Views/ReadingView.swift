@@ -8,6 +8,7 @@ struct ReadingView: View {
     @State private var showingBookmarkSheet = false
     @State private var selectedParagraph = ""
     @State private var selectedColor: HighlightColor = .primary
+    @State private var cachedParagraphs: [String] = []
     
     init(article: Article) {
         _viewModel = State(initialValue: ReadingViewModel(article: article))
@@ -173,6 +174,17 @@ struct ReadingView: View {
                     .font(.body)
                     .foregroundColor(viewModel.readingTheme.textColor.opacity(0.6))
             }
+            .accessibilityLabel("Previous paragraph")
+            
+            // Highlight button — accessible alternative to double-tap
+            Button {
+                showingHighlightSheet = true
+            } label: {
+                Image(systemName: "highlighter")
+                    .font(.body)
+                    .foregroundColor(viewModel.readingTheme.textColor.opacity(0.6))
+            }
+            .accessibilityLabel("Add highlight")
             
             Text("\(viewModel.highlights.count) highlights")
                 .font(.caption)
@@ -185,6 +197,7 @@ struct ReadingView: View {
                     .font(.body)
                     .foregroundColor(viewModel.readingTheme.textColor.opacity(0.6))
             }
+            .accessibilityLabel("Next paragraph")
         }
         .padding(.horizontal, 24)
         .padding(.vertical, 12)
@@ -194,12 +207,15 @@ struct ReadingView: View {
     }
     
     private var readingParagraphs: [String] {
-        let content = viewModel.article.bodyContent.isEmpty
-            ? (viewModel.article.articleDescription.isEmpty
-                ? "Article content could not be loaded. Please check your internet connection and try again."
-                : viewModel.article.articleDescription)
-            : viewModel.article.bodyContent
-        return content.components(separatedBy: "\n\n").filter { !$0.isEmpty }
+        if cachedParagraphs.isEmpty {
+            let content = viewModel.article.bodyContent.isEmpty
+                ? (viewModel.article.articleDescription.isEmpty
+                    ? "Article content could not be loaded. Please check your internet connection and try again."
+                    : viewModel.article.articleDescription)
+                : viewModel.article.bodyContent
+            cachedParagraphs = content.components(separatedBy: "\n\n").filter { !$0.isEmpty }
+        }
+        return cachedParagraphs
     }
 }
 

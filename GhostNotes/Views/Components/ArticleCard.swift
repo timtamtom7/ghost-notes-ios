@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ArticleCard: View {
     let article: Article
+    @Environment(\.accessibilityReduceMotion) var reduceMotion
     
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
@@ -16,6 +17,7 @@ struct ArticleCard: View {
                             Image(systemName: "checkmark.circle.fill")
                                 .font(.caption2)
                                 .foregroundColor(.success)
+                                .accessibilityLabel("Read")
                         }
                     }
                     
@@ -61,7 +63,9 @@ struct ArticleCard: View {
         .padding(16)
         .background(Color.surface)
         .clipShape(RoundedRectangle(cornerRadius: 16))
-        .animation(.spring(response: 0.3, dampingFraction: 0.75), value: article.id)
+        .animation(reduceMotion ? nil : .spring(response: 0.3, dampingFraction: 0.75), value: article.id)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel("\(article.title), from \(article.domain), \(article.readingTimeMinutes) minute read\(article.isRead ? ", read" : "")\(article.readingProgress > 0 && article.readingProgress < 1 ? ", \(Int(article.readingProgress * 100)) percent complete" : "")")
     }
 }
 
